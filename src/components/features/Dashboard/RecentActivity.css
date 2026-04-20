@@ -1,0 +1,90 @@
+.activity {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.activity__header {
+  margin-bottom: 10px;
+}
+
+.activity__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.activity__empty,
+.activity__error {
+  padding: 24px 8px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.activity__error {
+  color: #b91c1c;
+}
+
+.activity__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 6px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #1f2937;
+}
+
+.activity__item:last-child {
+  border-bottom: none;
+}
+
+.activity__dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 999px;
+  background: #cbd5e1;
+}
+
+.activity__dot--asset {
+  background: #3b82f6;
+}
+
+.activity__dot--transfer {
+  background: #10b981;
+}
+
+.activity__label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.activity__ref {
+  padding: 2px 6px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #334155;
+}

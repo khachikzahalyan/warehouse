@@ -1,0 +1,50 @@
+.branches-overview {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.branches-overview__header {
+  margin-bottom: 10px;
+}
+
+.branches-overview__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.branches-overview__empty {
+  padding: 24px 8px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.branches-overview__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.branches-overview__table th,
+.branches-overview__table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.branches-overview__table th {
+  color: #64748b;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.branches-overview__num {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+}
