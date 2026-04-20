@@ -99,6 +99,9 @@ Reads: clients treat `createdAt`/`updatedAt` as `Timestamp` objects; convert via
   "departmentId":"dp_it",                   // string | null — primary department (FK → departments)
   "jobTitle":    "Warehouse Operator",      // string | null
 
+  // localization
+  "preferredLocale": "hy",                  // 'hy' | 'en' | 'ru' — default 'hy'. Controls server-side notifications (v2) and is the initial UI locale hint at login.
+
   // system (only super_admin writes these)
   "system": {
     "role":   "user",                       // 'user' | 'admin' | 'super_admin' — REQUIRED
@@ -170,14 +173,18 @@ Reads: clients treat `createdAt`/`updatedAt` as `Timestamp` objects; convert via
 ```jsonc
 {
   // identity
-  "sku":          "LAP-00042",              // string, human-readable, REQUIRED, unique-by-convention
-  "name":         "MacBook Pro 16\" M3 Max",
+  "sku":          "LAP-00042",              // string, human-readable, REQUIRED, unique-by-convention; NEVER translated
+  "name":         "MacBook Pro 16\" M3 Max",// source-language name; fallback shown when no per-locale override exists
   "description":  "Space Black, 64 GB / 2 TB",
-  "category":     "laptop",                 // must be a value from settings/global_lists.categories
-  "brand":        "Apple",
-  "model":        "MacBook Pro 16 M3 Max 2024",
-  "serialNumber": "C02XXXXXXXXX",           // string | null; unique-by-convention
-  "barcode":      null,                     // string | null
+  "nameI18n":     null,                     // { hy?: string, en?: string, ru?: string } | null — optional per-locale overrides; absent/blank locales fall through to `name`
+  "descriptionI18n": null,                  // { hy?: string, en?: string, ru?: string } | null — optional per-locale overrides; absent/blank locales fall through to `description`
+  "sourceLanguage": "hy",                   // 'hy' | 'en' | 'ru' — REQUIRED; the locale of `name` / `description`; default = creator's UI locale at write time
+  "category":     "laptop",                 // must be a value from settings/global_lists.categories; UI label comes from i18next, not Firestore
+  "brand":        "Apple",                  // NEVER translated
+  "model":        "MacBook Pro 16 M3 Max 2024", // NEVER translated
+  "serialNumber": "C02XXXXXXXXX",           // string | null; unique-by-convention; NEVER translated
+  "barcode":      null,                     // string | null; NEVER translated
+  "qrCodeId":     null,                     // string | null — reserved for future QR scanner feature; NEVER translated; not rendered in Iteration 1 UI
   "tags":         ["m3","16in"],            // string[]; searchable via array-contains
 
   // location & ownership (flat for indexes)
@@ -196,7 +203,7 @@ Reads: clients treat `createdAt`/`updatedAt` as `Timestamp` objects; convert via
   "currency":         "USD",                // ISO 4217; default from settings/global_lists.currencies
   "purchaseDate":     "<Timestamp>",        // Timestamp | null
   "supplier":         "Apple Armenia",      // string | null (free-text in MVP; normalize to /suppliers in v2)
-  "invoiceNumber":    "INV-2024-001",       // string | null
+  "invoiceNumber":    "INV-2024-001",       // string | null; NEVER translated
 
   // warranty
   "warrantyProvider": "AppleCare+",         // string | null
@@ -230,6 +237,9 @@ Reads: clients treat `createdAt`/`updatedAt` as `Timestamp` objects; convert via
 - If `holderType == 'storage'`, `holderId == branchId`.
 - `category ∈ settings/global_lists.categories`.
 - On status transition → `archived`, write an entry to `/assets/{id}/history`.
+- `sourceLanguage ∈ {'hy','en','ru'}`. Missing → `'hy'` on read.
+- `nameI18n` / `descriptionI18n` are stored as `null` when empty. Repository write path drops any empty-string locale keys, and if all keys end up empty, stores `null` (never `{}`).
+- Translatable fields: only `name` / `description` (via the `*I18n` maps). Fields `sku`, `brand`, `model`, `serialNumber`, `barcode`, `invoiceNumber`, `qrCodeId` are NEVER localized — they stay as literal strings in every UI language.
 
 ### 4.5 `/assets/{assetId}/history/{eventId}`
 
@@ -454,3 +464,4 @@ The file `firestore.rules` in the repo root is the canonical enforcement of this
 ## 8. Change Log
 
 - **2026-04-20** — Initial draft written by orchestrator after user confirmed roles (3), no images, manual Console seeding. Applied all review fixes from the earlier critique (split license assignments, flat + mirrored asset holder, removed accessories from MVP, removed `imageUrls`, transfers PIN instead of signature URL, deferred dashboard_stats).
+- **2026-04-20 (i18n amendment)** — Added i18n fields. Assets gain optional `nameI18n`, `descriptionI18n` and REQUIRED `sourceLanguage` (`'hy' | 'en' | 'ru'`). Users gain `preferredLocale` (default `'hy'`). `qrCodeId` added to assets as nullable reserved field. Locked the never-translated field set: `sku`, `brand`, `model`, `serialNumber`, `barcode`, `invoiceNumber`, `qrCodeId`, `licenses.vendor`, `licenses.key`. No migration required — all additions are optional / defaulted on read.
