@@ -18,13 +18,36 @@
     "guest": "Гость",
     "unnamed": "Без имени",
     "signOut": "Выйти",
-    "signingOut": "Выход…"
+    "signingOut": "Выход…",
+    "language": "Язык",
+    "comingSoon": "Скоро"
+  },
+  "lang": {
+    "hy": "Армянский",
+    "en": "Английский",
+    "ru": "Русский"
   },
   "nav": {
+    "primary": "Основная навигация",
+    "home": "Главная",
+    "profile": "Профиль",
     "dashboard": "Панель",
     "inventory": "Инвентарь",
     "transfers": "Передачи",
-    "more": "Ещё"
+    "structure": "Структура",
+    "licenses": "Лицензии",
+    "users": "Пользователи",
+    "settings": "Настройки",
+    "more": "Ещё",
+    "descriptions": {
+      "dashboard": "Метрики и последние события",
+      "inventory": "Каталог активов и поиск",
+      "transfers": "Передачи и подтверждения",
+      "structure": "Филиалы и отделы",
+      "licenses": "Лицензии ПО и срок действия",
+      "users": "Учётные записи, роли и доступ",
+      "settings": "Справочники и настройки UI"
+    }
   },
   "role": {
     "user": "Пользователь",
@@ -74,10 +97,60 @@
       "noProfileNotice": "Для вашей учётной записи не создан профиль. Обратитесь к администратору."
     }
   },
+  "home": {
+    "welcome": "Добро пожаловать, {{name}}",
+    "subtitle": "Выберите раздел",
+    "openSection": "Открыть"
+  },
   "dashboard": {
+    "title": "Панель управления",
+    "subtitle": "Обзор инвентаря, пользователей и событий в реальном времени",
     "welcome": "Добро пожаловать, {{name}}",
     "yourRole": "Ваша роль",
-    "stub": "Это заглушка dashboard. Функциональность появится в следующих итерациях."
+    "stub": "Это заглушка dashboard. Функциональность появится в следующих итерациях.",
+    "stats": {
+      "totalAssets": "Всего активов",
+      "pendingTransfers": "Ожидают передачи",
+      "users": "Пользователи",
+      "branches": "Филиалы",
+      "expiredLicenses": "Просроченные лицензии"
+    },
+    "recentActivity": {
+      "title": "Последние события",
+      "empty": "Событий пока нет.",
+      "loadError": "Не удалось загрузить события."
+    },
+    "branchesOverview": {
+      "title": "По филиалам",
+      "colBranch": "Филиал",
+      "colAssets": "Активы",
+      "colEmployees": "Сотрудники",
+      "empty": "Филиалов пока нет."
+    },
+    "events": {
+      "asset.created": "Актив создан",
+      "asset.updated": "Актив изменён",
+      "asset.transferred": "Актив передан",
+      "asset.archived": "Актив архивирован",
+      "asset.unarchived": "Актив возвращён из архива",
+      "transfer.pending": "Ожидает передачи",
+      "transfer.confirmed": "Передача подтверждена",
+      "transfer.rejected": "Передача отклонена",
+      "transfer.cancelled": "Передача отменена"
+    }
+  },
+  "placeholder": {
+    "title": "Скоро будет",
+    "section": "Раздел «{{name}}»",
+    "description": "Этот раздел пока не готов. Появится в следующей итерации.",
+    "goHome": "На главную"
+  },
+  "profile": {
+    "title": "Профиль",
+    "email": "Email",
+    "displayName": "Имя",
+    "role": "Роль",
+    "preferredLocale": "Предпочитаемый язык"
   },
   "notFound": {
     "title": "Страница не найдена",

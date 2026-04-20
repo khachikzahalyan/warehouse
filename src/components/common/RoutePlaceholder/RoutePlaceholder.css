@@ -1,0 +1,49 @@
+.route-placeholder {
+  max-width: 640px;
+  margin: 48px auto 0;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.route-placeholder__badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.route-placeholder__title {
+  margin: 16px 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.route-placeholder__description {
+  margin: 0 0 20px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.route-placeholder__link {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #111827;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.route-placeholder__link:hover {
+  background: #1f2937;
+}

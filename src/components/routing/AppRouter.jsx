@@ -1,9 +1,20 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RequireAuth } from './RequireAuth';
-import { AppLayout } from '../layout/AppLayout';
+import { RequireRole } from './RequireRole';
+import { AdminLayout } from '../layout/AdminLayout';
 import { LoginPage } from '../../pages/LoginPage';
+import { HomePage } from '../../pages/HomePage';
 import { DashboardPage } from '../../pages/DashboardPage';
+import { ProfilePage } from '../../pages/ProfilePage';
+import {
+  InventoryPage,
+  TransfersPage,
+  StructurePage,
+  LicensesPage,
+  UsersAdminPage,
+  SettingsAdminPage,
+} from '../../pages/placeholders';
 import { NotFoundPage } from '../../pages/NotFoundPage';
 import { ForbiddenPage } from '../../pages/ForbiddenPage';
 
@@ -24,12 +35,53 @@ export function AppRouter() {
         <Route
           element={
             <RequireAuth>
-              <AppLayout />
+              <AdminLayout />
             </RequireAuth>
           }
         >
-          <Route index element={<DashboardPage />} />
-          <Route path="dashboard" element={<Navigate to="/" replace />} />
+          <Route index element={<HomePage />} />
+
+          <Route
+            path="dashboard"
+            element={
+              <RequireRole role="super_admin">
+                <DashboardPage />
+              </RequireRole>
+            }
+          />
+
+          <Route path="inventory" element={<InventoryPage />} />
+          <Route path="transfers" element={<TransfersPage />} />
+
+          <Route
+            path="structure"
+            element={
+              <RequireRole roles={['admin', 'super_admin']}>
+                <StructurePage />
+              </RequireRole>
+            }
+          />
+
+          <Route path="licenses" element={<LicensesPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+
+          <Route
+            path="admin/users"
+            element={
+              <RequireRole role="super_admin">
+                <UsersAdminPage />
+              </RequireRole>
+            }
+          />
+          <Route
+            path="admin/settings"
+            element={
+              <RequireRole role="super_admin">
+                <SettingsAdminPage />
+              </RequireRole>
+            }
+          />
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -19,6 +19,20 @@ jest.mock('./infra/repositories/firestoreUserRepository', () => ({
   subscribeProfile: () => () => {},
 }));
 
+// The dashboard route pulls the Firestore dashboard repo transitively.
+// Stub every export so jsdom does not have to load firebase/firestore → undici.
+jest.mock('./infra/repositories/firestoreDashboardRepository', () => ({
+  countAssets: async () => 0,
+  subscribeCount: () => () => {},
+  subscribePendingTransfersCount: () => () => {},
+  subscribeExpiredLicensesCount: () => () => {},
+  subscribeAssetHistory: () => () => {},
+  subscribeRecentTransfers: () => () => {},
+  subscribeBranchesBasic: () => () => {},
+  subscribeAssetBranchIds: () => () => {},
+  subscribeUserBranchIds: () => () => {},
+}));
+
 import App from './App';
 
 test('unauthenticated session renders login page', async () => {

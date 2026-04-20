@@ -18,13 +18,36 @@
     "guest": "Guest",
     "unnamed": "Unnamed",
     "signOut": "Sign out",
-    "signingOut": "Signing out…"
+    "signingOut": "Signing out…",
+    "language": "Language",
+    "comingSoon": "Coming soon"
+  },
+  "lang": {
+    "hy": "Armenian",
+    "en": "English",
+    "ru": "Russian"
   },
   "nav": {
+    "primary": "Primary navigation",
+    "home": "Home",
+    "profile": "Profile",
     "dashboard": "Dashboard",
     "inventory": "Inventory",
     "transfers": "Transfers",
-    "more": "More"
+    "structure": "Structure",
+    "licenses": "Licenses",
+    "users": "Users",
+    "settings": "Settings",
+    "more": "More",
+    "descriptions": {
+      "dashboard": "Metrics and recent activity",
+      "inventory": "Assets catalogue and search",
+      "transfers": "Custody handovers and confirmations",
+      "structure": "Branches and departments",
+      "licenses": "Software licences and expirations",
+      "users": "Accounts, roles and access",
+      "settings": "Global lists and UI options"
+    }
   },
   "role": {
     "user": "User",
@@ -74,10 +97,60 @@
       "noProfileNotice": "No profile was created for your account. Contact an administrator."
     }
   },
+  "home": {
+    "welcome": "Welcome, {{name}}",
+    "subtitle": "Pick a section to continue",
+    "openSection": "Open"
+  },
   "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Live overview of inventory, users and activity",
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "stub": "This is a dashboard placeholder. Real content arrives in later iterations."
+    "stub": "This is a dashboard placeholder. Real content arrives in later iterations.",
+    "stats": {
+      "totalAssets": "Total assets",
+      "pendingTransfers": "Pending transfers",
+      "users": "Users",
+      "branches": "Branches",
+      "expiredLicenses": "Expired licences"
+    },
+    "recentActivity": {
+      "title": "Recent activity",
+      "empty": "No activity yet.",
+      "loadError": "Could not load activity."
+    },
+    "branchesOverview": {
+      "title": "Branches overview",
+      "colBranch": "Branch",
+      "colAssets": "Assets",
+      "colEmployees": "Employees",
+      "empty": "No branches yet."
+    },
+    "events": {
+      "asset.created": "Asset created",
+      "asset.updated": "Asset updated",
+      "asset.transferred": "Asset transferred",
+      "asset.archived": "Asset archived",
+      "asset.unarchived": "Asset unarchived",
+      "transfer.pending": "Transfer pending",
+      "transfer.confirmed": "Transfer confirmed",
+      "transfer.rejected": "Transfer rejected",
+      "transfer.cancelled": "Transfer cancelled"
+    }
+  },
+  "placeholder": {
+    "title": "Coming soon",
+    "section": "Section “{{name}}”",
+    "description": "This section is not ready yet. It will arrive in a later iteration.",
+    "goHome": "Back to home"
+  },
+  "profile": {
+    "title": "Profile",
+    "email": "Email",
+    "displayName": "Display name",
+    "role": "Role",
+    "preferredLocale": "Preferred language"
   },
   "notFound": {
     "title": "Page not found",
