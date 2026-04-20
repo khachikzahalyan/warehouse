@@ -1,0 +1,97 @@
+{
+  "app": {
+    "title": "Asset tracking",
+    "brand": "Warehouse"
+  },
+  "common": {
+    "loading": "Loading…",
+    "cancel": "Cancel",
+    "save": "Save",
+    "confirm": "Confirm",
+    "submit": "Submit",
+    "close": "Close",
+    "retry": "Retry",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "none": "—",
+    "guest": "Guest",
+    "unnamed": "Unnamed",
+    "signOut": "Sign out",
+    "signingOut": "Signing out…"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventory",
+    "transfers": "Transfers",
+    "more": "More"
+  },
+  "role": {
+    "user": "User",
+    "admin": "Admin",
+    "super_admin": "Super-admin"
+  },
+  "status": {
+    "active": "Active",
+    "archived": "Archived",
+    "disabled": "Disabled",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "rejected": "Rejected",
+    "cancelled": "Cancelled"
+  },
+  "condition": {
+    "new": "New",
+    "good": "Good",
+    "fair": "Fair",
+    "broken": "Broken"
+  },
+  "category": {
+    "laptop": "Laptop",
+    "desktop": "Desktop",
+    "monitor": "Monitor",
+    "peripheral": "Peripheral",
+    "phone": "Phone",
+    "tablet": "Tablet",
+    "furniture": "Furniture",
+    "vehicle": "Vehicle",
+    "other": "Other"
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "signIn": "Sign in",
+    "signingIn": "Signing in…",
+    "errors": {
+      "invalidEmail": "Invalid email format.",
+      "userDisabled": "Account disabled. Contact an administrator.",
+      "tooManyRequests": "Too many attempts. Please wait and try again.",
+      "networkError": "Network problem. Check your connection.",
+      "invalidCredential": "Wrong email or password.",
+      "generic": "Could not sign in. Try again.",
+      "accountDisabledNotice": "Your account is disabled. Contact an administrator.",
+      "noProfileNotice": "No profile was created for your account. Contact an administrator."
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{name}}",
+    "yourRole": "Your role",
+    "stub": "This is a dashboard placeholder. Real content arrives in later iterations."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The requested URL does not exist.",
+    "goHome": "Home"
+  },
+  "forbidden": {
+    "title": "Access forbidden",
+    "description": "Your role has no access to this section.",
+    "goHome": "Home"
+  },
+  "asset": {
+    "form": {
+      "translationsSection": "Name translations"
+    }
+  }
+}

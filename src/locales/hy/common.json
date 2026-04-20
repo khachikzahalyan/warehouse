@@ -1,0 +1,97 @@
+{
+  "app": {
+    "title": "Գույքագրում",
+    "brand": "Warehouse"
+  },
+  "common": {
+    "loading": "Բեռնվում է…",
+    "cancel": "Չեղարկել",
+    "save": "Պահպանել",
+    "confirm": "Հաստատել",
+    "submit": "Ուղարկել",
+    "close": "Փակել",
+    "retry": "Կրկին փորձել",
+    "back": "Վերադառնալ",
+    "yes": "Այո",
+    "no": "Ոչ",
+    "none": "—",
+    "guest": "Հյուր",
+    "unnamed": "Առանց անունի",
+    "signOut": "Դուրս գալ",
+    "signingOut": "Ելք…"
+  },
+  "nav": {
+    "dashboard": "Վահանակ",
+    "inventory": "Գույք",
+    "transfers": "Փոխանցումներ",
+    "more": "Ավելին"
+  },
+  "role": {
+    "user": "Օգտատեր",
+    "admin": "Ադմին",
+    "super_admin": "Սուպեր-ադմին"
+  },
+  "status": {
+    "active": "Ակտիվ",
+    "archived": "Արխիվացված",
+    "disabled": "Անջատված",
+    "pending": "Սպասում է",
+    "confirmed": "Հաստատված",
+    "rejected": "Մերժված",
+    "cancelled": "Չեղարկված"
+  },
+  "condition": {
+    "new": "Նոր",
+    "good": "Լավ",
+    "fair": "Բավարար",
+    "broken": "Անսարք"
+  },
+  "category": {
+    "laptop": "Նոութբուք",
+    "desktop": "Աշխատասեղանային ՀՀ",
+    "monitor": "Մոնիտոր",
+    "peripheral": "Պերիֆերիա",
+    "phone": "Հեռախոս",
+    "tablet": "Պլանշետ",
+    "furniture": "Կահույք",
+    "vehicle": "Տրանսպորտ",
+    "other": "Այլ"
+  },
+  "auth": {
+    "loginTitle": "Մուտք համակարգ",
+    "emailLabel": "Էլ. հասցե",
+    "passwordLabel": "Գաղտնաբառ",
+    "signIn": "Մուտք գործել",
+    "signingIn": "Մուտք…",
+    "errors": {
+      "invalidEmail": "Էլ. հասցեի անվավեր ձևաչափ։",
+      "userDisabled": "Հաշիվն անջատված է։ Դիմեք ադմինիստրատորին։",
+      "tooManyRequests": "Չափից շատ փորձեր։ Սպասեք և նորից փորձեք։",
+      "networkError": "Ցանցի խնդիր։ Ստուգեք կապը։",
+      "invalidCredential": "Սխալ էլ. հասցե կամ գաղտնաբառ։",
+      "generic": "Չհաջողվեց մուտք գործել։ Փորձեք կրկին։",
+      "accountDisabledNotice": "Ձեր հաշիվն անջատված է։ Դիմեք ադմինիստրատորին։",
+      "noProfileNotice": "Ձեր հաշվի համար պրոֆիլ չի ստեղծվել։ Դիմեք ադմինիստրատորին։"
+    }
+  },
+  "dashboard": {
+    "welcome": "Բարի գալուստ, {{name}}",
+    "yourRole": "Ձեր դերը",
+    "stub": "Սա ժամանակավոր վահանակ է։ Ֆունկցիոնալությունը կավելացվի հաջորդ փուլերում։"
+  },
+  "notFound": {
+    "title": "Էջը չի գտնվել",
+    "description": "Հարցված հասցեն գոյություն չունի։",
+    "goHome": "Գլխավոր"
+  },
+  "forbidden": {
+    "title": "Մուտքը արգելված է",
+    "description": "Ձեր դերը իրավունք չունի այս բաժնի վրա։",
+    "goHome": "Գլխավոր"
+  },
+  "asset": {
+    "form": {
+      "translationsSection": "Անվանման թարգմանություններ"
+    }
+  }
+}

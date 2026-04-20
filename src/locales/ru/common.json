@@ -1,0 +1,97 @@
+{
+  "app": {
+    "title": "Учёт имущества",
+    "brand": "Warehouse"
+  },
+  "common": {
+    "loading": "Загрузка…",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "confirm": "Подтвердить",
+    "submit": "Отправить",
+    "close": "Закрыть",
+    "retry": "Повторить",
+    "back": "Назад",
+    "yes": "Да",
+    "no": "Нет",
+    "none": "—",
+    "guest": "Гость",
+    "unnamed": "Без имени",
+    "signOut": "Выйти",
+    "signingOut": "Выход…"
+  },
+  "nav": {
+    "dashboard": "Панель",
+    "inventory": "Инвентарь",
+    "transfers": "Передачи",
+    "more": "Ещё"
+  },
+  "role": {
+    "user": "Пользователь",
+    "admin": "Админ",
+    "super_admin": "Супер-админ"
+  },
+  "status": {
+    "active": "Активен",
+    "archived": "Архив",
+    "disabled": "Отключён",
+    "pending": "Ожидает",
+    "confirmed": "Подтверждено",
+    "rejected": "Отклонено",
+    "cancelled": "Отменено"
+  },
+  "condition": {
+    "new": "Новый",
+    "good": "Хороший",
+    "fair": "Приемлемый",
+    "broken": "Неисправен"
+  },
+  "category": {
+    "laptop": "Ноутбук",
+    "desktop": "Настольный ПК",
+    "monitor": "Монитор",
+    "peripheral": "Периферия",
+    "phone": "Телефон",
+    "tablet": "Планшет",
+    "furniture": "Мебель",
+    "vehicle": "Транспорт",
+    "other": "Прочее"
+  },
+  "auth": {
+    "loginTitle": "Вход в систему",
+    "emailLabel": "Email",
+    "passwordLabel": "Пароль",
+    "signIn": "Войти",
+    "signingIn": "Вход…",
+    "errors": {
+      "invalidEmail": "Неверный формат email.",
+      "userDisabled": "Учётная запись отключена. Обратитесь к администратору.",
+      "tooManyRequests": "Слишком много попыток. Подождите и попробуйте снова.",
+      "networkError": "Проблема с сетью. Проверьте подключение.",
+      "invalidCredential": "Неверный email или пароль.",
+      "generic": "Не удалось войти. Попробуйте ещё раз.",
+      "accountDisabledNotice": "Ваша учётная запись отключена. Обратитесь к администратору.",
+      "noProfileNotice": "Для вашей учётной записи не создан профиль. Обратитесь к администратору."
+    }
+  },
+  "dashboard": {
+    "welcome": "Добро пожаловать, {{name}}",
+    "yourRole": "Ваша роль",
+    "stub": "Это заглушка dashboard. Функциональность появится в следующих итерациях."
+  },
+  "notFound": {
+    "title": "Страница не найдена",
+    "description": "Запрошенный адрес не существует.",
+    "goHome": "На главную"
+  },
+  "forbidden": {
+    "title": "Доступ запрещён",
+    "description": "У вашей роли нет прав на этот раздел.",
+    "goHome": "На главную"
+  },
+  "asset": {
+    "form": {
+      "translationsSection": "Переводы названия"
+    }
+  }
+}
