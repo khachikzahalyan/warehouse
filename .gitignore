@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# firebase service accounts / admin credentials — NEVER commit
+firebase-service-account.json
+*.serviceaccount.json
+*-firebase-adminsdk-*.json

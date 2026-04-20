@@ -1,0 +1,32 @@
+.dashboard {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.dashboard__title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.dashboard__line {
+  margin: 0 0 8px;
+  color: #374151;
+}
+
+.dashboard__line code {
+  padding: 2px 6px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.dashboard__hint {
+  margin: 16px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+}

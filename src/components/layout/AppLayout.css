@@ -1,0 +1,65 @@
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9fafb;
+}
+
+.app-layout__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #111827;
+  color: #f9fafb;
+}
+
+.app-layout__brand-link {
+  color: #f9fafb;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.app-layout__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.app-layout__user-name {
+  color: #f9fafb;
+}
+
+.app-layout__user-role {
+  padding: 2px 8px;
+  background: #374151;
+  color: #d1d5db;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.app-layout__signout {
+  padding: 6px 12px;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  background: transparent;
+  color: #f9fafb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.app-layout__signout:hover:not(:disabled) {
+  background: #1f2937;
+}
+
+.app-layout__signout:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.app-layout__main {
+  flex: 1;
+  padding: 24px;
+}

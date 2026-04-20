@@ -1,0 +1,255 @@
+rules_version = '2';
+
+// ============================================================================
+// Warehouse Management System — Firestore Security Rules (DRAFT v1)
+// ----------------------------------------------------------------------------
+// Project:        warehouse-8ec61
+// Schema:         docs/superpowers/plans/firestore-schema-v1.md
+// Seed templates: docs/superpowers/plans/firestore-seed-templates.md
+//
+// STATUS: DRAFT. NOT YET DEPLOYED to the Firebase project.
+// Do NOT `firebase deploy --only firestore:rules` yet. The manual seeding step
+// (creating the first super_admin in /users/{uid} via the Console) must happen
+// BEFORE these rules go live — otherwise the chicken-and-egg write of the very
+// first system.role field is blocked.
+//
+// Role model: 3 roles stored at /users/{uid}.system.role
+//   - 'super_admin' : full access, only role that can create/edit other super_admins
+//                     and write /settings/*
+//   - 'admin'       : CRUD on assets, branches, departments, licenses, transfers,
+//                     and users (except super_admins). Read-only on /settings/*.
+//   - 'user'        : read public data, write their own profile's limited fields,
+//                     initiate/confirm/cancel transfers involving themselves.
+//
+// Enforcement philosophy:
+//   - Client-side <RoleGate> is UX-only.
+//   - THESE rules are the real boundary.
+//   - When in doubt, DENY. Every collection has an explicit `match` block.
+// ============================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ------------------------------------------------------------------------
+    // Helpers
+    // ------------------------------------------------------------------------
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function myUid() {
+      return request.auth.uid;
+    }
+
+    // Read the caller's /users/{uid} doc. If it does not exist, get() causes
+    // the rule evaluation to fail → default-deny applies. This is intentional:
+    // unseeded auth users must be created via the Admin SDK / Console first.
+    function myRole() {
+      return get(/databases/$(database)/documents/users/$(myUid())).data.system.role;
+    }
+
+    function myStatus() {
+      return get(/databases/$(database)/documents/users/$(myUid())).data.system.status;
+    }
+
+    function isActive() {
+      return isSignedIn() && myStatus() == 'active';
+    }
+
+    function isUser()       { return isActive() && myRole() == 'user'; }
+    function isAdmin()      { return isActive() && myRole() == 'admin'; }
+    function isSuperAdmin() { return isActive() && myRole() == 'super_admin'; }
+    function isStaff()      { return isAdmin() || isSuperAdmin(); } // admin OR super_admin
+
+    // For role-write protection on /users/{uid}: super_admin is only writable
+    // by another super_admin. admin and user can be created/edited by any staff.
+    function targetIsSuperAdmin(data) {
+      return data.keys().hasAll(['system']) && data.system.role == 'super_admin';
+    }
+
+    // Document-metadata guards. Reject writes that don't carry createdBy/updatedBy
+    // matching the caller. `createdAt`/`updatedAt` types are checked loosely.
+    function hasValidAuthorship(data) {
+      return data.keys().hasAll(['updatedBy']) && data.updatedBy == myUid();
+    }
+
+    // On create: createdBy must also equal caller.
+    function hasValidCreationAuthorship(data) {
+      return hasValidAuthorship(data)
+        && data.keys().hasAll(['createdBy']) && data.createdBy == myUid();
+    }
+
+    // ------------------------------------------------------------------------
+    // /users/{uid}
+    // ------------------------------------------------------------------------
+    match /users/{uid} {
+      // READ: any signed-in active user can read any user doc (needed for holder
+      // display names). A user with status != 'active' cannot read.
+      allow read: if isActive();
+
+      // CREATE: super_admin always; admin only if target is NOT a super_admin;
+      // self-create only for the very first seed doc and only to set role='user'
+      // (to avoid privilege escalation). In MVP we don't allow self-create at
+      // all — super_admin seeds everyone.
+      allow create: if isSuperAdmin()
+        || (isAdmin() && !targetIsSuperAdmin(request.resource.data));
+
+      // UPDATE:
+      //   * super_admin: anything.
+      //   * admin: can update any user EXCEPT one that is currently super_admin,
+      //            AND cannot promote anyone TO super_admin.
+      //   * user: can only update their OWN doc, and only the fields
+      //            { displayName, phone, photoUrl, updatedAt, updatedBy }.
+      allow update: if
+        (isSuperAdmin())
+        || (isAdmin()
+            && resource.data.system.role != 'super_admin'
+            && request.resource.data.system.role != 'super_admin')
+        || (isUser()
+            && uid == myUid()
+            && request.resource.data.diff(resource.data).affectedKeys()
+                 .hasOnly(['displayName','phone','photoUrl','updatedAt','updatedBy'])
+            && hasValidAuthorship(request.resource.data));
+
+      // DELETE: super_admin only; never delete self.
+      allow delete: if isSuperAdmin() && uid != myUid();
+    }
+
+    // ------------------------------------------------------------------------
+    // /branches/{branchId}
+    // ------------------------------------------------------------------------
+    match /branches/{branchId} {
+      allow read:              if isActive();
+      allow create:            if isStaff() && hasValidCreationAuthorship(request.resource.data);
+      allow update:            if isStaff() && hasValidAuthorship(request.resource.data);
+      allow delete:            if isSuperAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // /departments/{deptId}
+    // ------------------------------------------------------------------------
+    match /departments/{deptId} {
+      allow read:              if isActive();
+      allow create:            if isStaff() && hasValidCreationAuthorship(request.resource.data);
+      allow update:            if isStaff() && hasValidAuthorship(request.resource.data);
+      allow delete:            if isSuperAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // /assets/{assetId} + /assets/{assetId}/history/{eventId}
+    // ------------------------------------------------------------------------
+    match /assets/{assetId} {
+      // READ: any active user.
+      allow read: if isActive();
+
+      // WRITE: staff only. (Custody changes for `user` role flow through /transfers,
+      // which updates assets inside a committed transaction authored by staff
+      // semantics in the app layer; MVP keeps direct asset writes staff-only.)
+      allow create: if isStaff() && hasValidCreationAuthorship(request.resource.data);
+      allow update: if isStaff() && hasValidAuthorship(request.resource.data);
+      allow delete: if isSuperAdmin();
+
+      // Sub: append-only history. Writes allowed by staff; reads by any active user.
+      match /history/{eventId} {
+        allow read:   if isActive();
+        allow create: if isStaff();
+        // History is append-only — no updates, no deletes from clients.
+        allow update, delete: if false;
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // /licenses/{licenseId}
+    // ------------------------------------------------------------------------
+    // NOTE: the `key` field is sensitive. MVP approach: gate READ of the whole
+    // doc instead of masking a single field (Firestore rules cannot redact a
+    // single field on read). A `user` may read a license ONLY if they are in
+    // assignments.userIds. Staff always reads everything.
+    match /licenses/{licenseId} {
+      allow read: if isStaff()
+        || (isUser() && resource.data.assignments.userIds.hasAny([myUid()]));
+
+      allow create: if isStaff() && hasValidCreationAuthorship(request.resource.data);
+      allow update: if isStaff() && hasValidAuthorship(request.resource.data);
+      allow delete: if isSuperAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // /transfers/{transferId}
+    // ------------------------------------------------------------------------
+    // READ:  staff always; a user reads a transfer only if they are the from-party
+    //        or the to-party.
+    // CREATE: staff; or a user whose uid == from.id and from.type == 'user'
+    //         (initiating a transfer out of their own custody). Must be 'pending'.
+    // UPDATE (status transitions from 'pending' only):
+    //    pending -> confirmed : staff, or user whose uid == to.id (when to.type == 'user').
+    //    pending -> rejected  : same as confirmed.
+    //    pending -> cancelled : staff, or the original initiator (createdBy == uid).
+    //    Any change OUT of a terminal state is forbidden.
+    // DELETE: never from client.
+    match /transfers/{transferId} {
+      function isPartyUser() {
+        return (resource.data.from.type == 'user' && resource.data.from.id == myUid())
+            || (resource.data.to.type   == 'user' && resource.data.to.id   == myUid());
+      }
+
+      allow read: if isStaff() || (isActive() && isPartyUser());
+
+      allow create: if isActive()
+        && request.resource.data.status == 'pending'
+        && hasValidCreationAuthorship(request.resource.data)
+        && request.resource.data.assetIds is list
+        && request.resource.data.assetIds.size() >= 1
+        && request.resource.data.assetIds.size() <= 50
+        && request.resource.data.from.displayName is string
+        && request.resource.data.from.displayName.size() <= 100
+        && request.resource.data.to.displayName is string
+        && request.resource.data.to.displayName.size() <= 100
+        && (request.resource.data.to.type != 'user'
+            || exists(/databases/$(database)/documents/users/$(request.resource.data.to.id)))
+        && (
+          isStaff()
+          || (request.resource.data.from.type == 'user'
+              && request.resource.data.from.id == myUid())
+        );
+
+      allow update: if isActive()
+        && resource.data.status == 'pending'
+        && hasValidAuthorship(request.resource.data)
+        && (
+          isStaff()
+          || (request.resource.data.status == 'confirmed'
+              && resource.data.to.type == 'user'
+              && resource.data.to.id == myUid()
+              && request.resource.data.signaturePin == null)
+          || (request.resource.data.status == 'rejected'
+              && resource.data.to.type == 'user'
+              && resource.data.to.id == myUid()
+              && request.resource.data.signaturePin == null)
+          || (request.resource.data.status == 'cancelled'
+              && resource.data.createdBy == myUid()
+              && request.resource.data.signaturePin == null)
+        );
+
+      allow delete: if false;
+    }
+
+    // ------------------------------------------------------------------------
+    // /settings/{docId}
+    // ------------------------------------------------------------------------
+    match /settings/{docId} {
+      // Read by any active user (forms need global_lists and ui_schemas).
+      allow read: if isActive();
+      // Write only by super_admin.
+      allow create, update, delete: if isSuperAdmin();
+    }
+
+    // ------------------------------------------------------------------------
+    // DEFAULT DENY — catch-all for anything not explicitly matched above.
+    // ------------------------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
