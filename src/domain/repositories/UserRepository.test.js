@@ -1,4 +1,10 @@
-import { toUserRole, toUserStatus, USER_ROLES, USER_STATUSES } from './UserRepository';
+import {
+  toUserRole,
+  toUserStatus,
+  toUserPreferredLocale,
+  USER_ROLES,
+  USER_STATUSES,
+} from './UserRepository';
 
 describe('toUserRole', () => {
   test.each(['user', 'admin', 'super_admin'])('accepts known role %s', (r) => {
@@ -24,6 +30,20 @@ describe('toUserStatus', () => {
     expect(toUserStatus('pending')).toBe('disabled');
     expect(toUserStatus(undefined)).toBe('disabled');
     expect(toUserStatus(null)).toBe('disabled');
+  });
+});
+
+describe('toUserPreferredLocale', () => {
+  test.each(['hy', 'en', 'ru'])('accepts known locale %s', (l) => {
+    expect(toUserPreferredLocale(l)).toBe(l);
+  });
+
+  test('coerces unknown locales to default "hy"', () => {
+    expect(toUserPreferredLocale('de')).toBe('hy');
+    expect(toUserPreferredLocale('')).toBe('hy');
+    expect(toUserPreferredLocale(undefined)).toBe('hy');
+    expect(toUserPreferredLocale(null)).toBe('hy');
+    expect(toUserPreferredLocale(42)).toBe('hy');
   });
 });
 

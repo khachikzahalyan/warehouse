@@ -4,7 +4,11 @@
 
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
-import { toUserRole, toUserStatus } from '../../domain/repositories/UserRepository';
+import {
+  toUserRole,
+  toUserStatus,
+  toUserPreferredLocale,
+} from '../../domain/repositories/UserRepository';
 
 /** @typedef {import('../../domain/repositories/UserRepository.js').UserProfile} UserProfile */
 
@@ -26,6 +30,7 @@ function toProfile(uid, snap) {
     displayName: typeof data.displayName === 'string' ? data.displayName : '',
     role: toUserRole(system.role),
     status: toUserStatus(system.status),
+    preferredLocale: toUserPreferredLocale(data.preferredLocale),
   };
 }
 

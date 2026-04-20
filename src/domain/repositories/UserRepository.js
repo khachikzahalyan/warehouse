@@ -4,6 +4,10 @@
 // The app-wide role enum lives here. It MUST stay in sync with firestore.rules
 // at the repo root (rules use the same string values at users/{uid}.system.role).
 
+import { toAppLocale } from '../locales';
+
+/** @typedef {import('../locales').AppLocale} AppLocale */
+
 /**
  * @typedef {'user' | 'admin' | 'super_admin'} UserRole
  */
@@ -23,6 +27,7 @@
  * @property {string} displayName
  * @property {UserRole} role
  * @property {UserStatus} status
+ * @property {AppLocale} preferredLocale   UI locale the user last picked; default 'hy'.
  */
 
 /** All valid roles, in ascending privilege order. */
@@ -51,6 +56,17 @@ export function toUserStatus(value) {
   return USER_STATUSES.includes(/** @type {UserStatus} */ (value))
     ? /** @type {UserStatus} */ (value)
     : 'disabled';
+}
+
+/**
+ * Re-export for consumers that only import from UserRepository — avoids
+ * a second import of ../locales in simple call sites. Always delegates
+ * to the canonical narrower in src/domain/locales.js.
+ * @param {unknown} value
+ * @returns {AppLocale}
+ */
+export function toUserPreferredLocale(value) {
+  return toAppLocale(value);
 }
 
 /**
