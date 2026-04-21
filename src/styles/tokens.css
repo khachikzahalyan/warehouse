@@ -1,0 +1,93 @@
+/* Design tokens for the Warehouse app.
+ * Imported once from src/index.css. Every kit component and co-located page
+ * CSS should read colors, spacing, radius, fonts from these custom properties
+ * rather than hardcoding values — so a future palette/density change is a
+ * one-file edit.
+ *
+ * Sizing target (this iteration): compact-desktop enterprise admin. Bigger
+ * than a 2018-CRUD app, smaller than a touch kiosk. 14" laptop and 27"
+ * monitor both read cleanly.
+ */
+
+:root {
+  /* Typography */
+  --font-family-base:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  --font-family-mono:
+    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-md: 15px;    /* body base */
+  --font-size-lg: 17px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;   /* h1 */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-base: 1.5;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* Neutrals */
+  --color-bg-app: #f8fafc;
+  --color-bg-surface: #ffffff;
+  --color-bg-subtle: #f1f5f9;
+  --color-border: #e5e7eb;
+  --color-border-strong: #cbd5e1;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+
+  /* Accents */
+  --color-primary: #1d4ed8;
+  --color-primary-hover: #1e40af;
+  --color-primary-soft: #eff6ff;
+  --color-danger: #b91c1c;
+  --color-danger-hover: #991b1b;
+  --color-danger-soft: #fef2f2;
+  --color-success: #047857;
+  --color-success-soft: #ecfdf5;
+  --color-warning: #b45309;
+  --color-warning-soft: #fef3c7;
+  --color-info: #0369a1;
+  --color-info-soft: #e0f2fe;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.35);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 18px -10px rgba(15, 23, 42, 0.2);
+  --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
+
+  /* Control heights (buttons, inputs, selects) */
+  --control-height-sm: 32px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+}
