@@ -1,0 +1,17 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-field__error {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.form-field__helper {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}

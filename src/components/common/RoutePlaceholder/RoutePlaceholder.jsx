@@ -1,30 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { EmptyState } from '../EmptyState';
+import { Badge } from '../Badge';
+import { PageHeader } from '../PageHeader';
 import './RoutePlaceholder.css';
 
 /**
- * Generic "coming soon" panel rendered by placeholder routes. Looks consistent
- * across sections so the user visually understands the page is a stub.
+ * "Coming soon" panel rendered by placeholder routes. Thin wrapper around
+ * <PageHeader> + <EmptyState> so every placeholder page looks identical.
+ * Callers pass the i18n key of the section name (`nav.inventory`, ...).
+ *
+ * Kept for backwards compatibility; new placeholder pages compose
+ * <PageHeader> + <EmptyState> directly.
  *
  * @param {{ sectionKey: string }} props
- *   sectionKey — i18n key under `nav.*` for the section title (e.g. 'transfers').
  */
 export function RoutePlaceholder({ sectionKey }) {
   const { t } = useTranslation();
   const sectionName = t(`nav.${sectionKey}`);
+  const description = t(`nav.descriptions.${sectionKey}`, { defaultValue: '' });
+
   return (
-    <div className="route-placeholder">
-      <div className="route-placeholder__badge">{t('common.comingSoon')}</div>
-      <h1 className="route-placeholder__title">
-        {t('placeholder.section', { name: sectionName })}
-      </h1>
-      <p className="route-placeholder__description">
-        {t('placeholder.description')}
-      </p>
-      <Link to="/" className="route-placeholder__link">
-        {t('placeholder.goHome')}
-      </Link>
+    <div>
+      <PageHeader
+        title={sectionName}
+        subtitle={description || undefined}
+      />
+      <EmptyState
+        badge={<Badge tone="primary" size="sm">{t('common.comingSoon')}</Badge>}
+        title={t('placeholder.section', { name: sectionName })}
+        description={t('placeholder.description')}
+        action={
+          <Link to="/" className="route-placeholder__link">
+            {t('placeholder.goHome')}
+          </Link>
+        }
+      />
     </div>
   );
 }

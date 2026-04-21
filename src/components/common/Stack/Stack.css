@@ -1,0 +1,9 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack--align-start    { align-items: flex-start; }
+.stack--align-center   { align-items: center; }
+.stack--align-end      { align-items: flex-end; }
+.stack--align-stretch  { align-items: stretch; }
