@@ -7,14 +7,12 @@ import { LoginPage } from '../../pages/LoginPage';
 import { HomePage } from '../../pages/HomePage';
 import { DashboardPage } from '../../pages/DashboardPage';
 import { ProfilePage } from '../../pages/ProfilePage';
-import {
-  InventoryPage,
-  TransfersPage,
-  StructurePage,
-  LicensesPage,
-  UsersAdminPage,
-  SettingsAdminPage,
-} from '../../pages/placeholders';
+import { InventoryPage } from '../../pages/InventoryPage';
+import { TransfersPage } from '../../pages/TransfersPage';
+import { StructurePage } from '../../pages/StructurePage';
+import { LicensesPage } from '../../pages/LicensesPage';
+import { UsersPage } from '../../pages/UsersPage';
+import { SettingsPage } from '../../pages/SettingsPage';
 import { NotFoundPage } from '../../pages/NotFoundPage';
 import { ForbiddenPage } from '../../pages/ForbiddenPage';
 
@@ -69,7 +67,7 @@ export function AppRouter() {
             path="admin/users"
             element={
               <RequireRole role="super_admin">
-                <UsersAdminPage />
+                <UsersPage />
               </RequireRole>
             }
           />
@@ -77,7 +75,7 @@ export function AppRouter() {
             path="admin/settings"
             element={
               <RequireRole role="super_admin">
-                <SettingsAdminPage />
+                <SettingsPage />
               </RequireRole>
             }
           />

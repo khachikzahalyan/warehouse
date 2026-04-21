@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { LoginForm } from '../components/auth/LoginForm';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '../../hooks/useAuth';
+import { LoginForm } from '../../components/auth/LoginForm';
 import './LoginPage.css';
 
 /**
+ * Resolve a redirect-reason into an i18n key.
  * @param {string | undefined} reason
  * @returns {string | null}
  */
-function reasonMessage(reason) {
+function reasonKey(reason) {
   switch (reason) {
     case 'disabled':
-      return 'Ваша учётная запись отключена. Обратитесь к администратору.';
+      return 'auth.errors.accountDisabledNotice';
     case 'no-profile':
-      return 'Для вашей учётной записи не создан профиль. Обратитесь к администратору.';
+      return 'auth.errors.noProfileNotice';
     default:
       return null;
   }
@@ -21,24 +23,25 @@ function reasonMessage(reason) {
 
 export function LoginPage() {
   const { user, profile, loading, signOut } = useAuth();
+  const { t } = useTranslation();
   const location = useLocation();
   const state = /** @type {{ from?: string, reason?: string } | null} */ (location.state);
-  const reason = reasonMessage(state?.reason);
+  const key = reasonKey(state?.reason);
 
   // If a signed-in user landed here for a reason (disabled / no-profile),
   // sign them out so the session is clean before the next attempt.
   useEffect(() => {
-    if (reason && user && !loading) {
+    if (key && user && !loading) {
       signOut().catch(() => {});
     }
-  }, [reason, user, loading, signOut]);
+  }, [key, user, loading, signOut]);
 
   if (loading) {
-    return <div className="login-page__center">Загрузка…</div>;
+    return <div className="login-page__center">{t('common.loading')}</div>;
   }
 
   // Fully authenticated and active → never show login.
-  if (user && profile && profile.status === 'active' && !reason) {
+  if (user && profile && profile.status === 'active' && !key) {
     const from = state?.from && state.from !== '/login' ? state.from : '/';
     return <Navigate to={from} replace />;
   }
@@ -46,9 +49,9 @@ export function LoginPage() {
   return (
     <div className="login-page">
       <div className="login-page__inner">
-        {reason && (
+        {key && (
           <div className="login-page__notice" role="alert">
-            {reason}
+            {t(key)}
           </div>
         )}
         <LoginForm />

@@ -37,8 +37,9 @@ import App from './App';
 
 test('unauthenticated session renders login page', async () => {
   render(<App />);
-  // Title on the login form.
-  expect(await screen.findByText('Вход в систему')).toBeInTheDocument();
+  // Title on the login form. The i18n LanguageDetector reads navigator.language
+  // in jsdom, which defaults to en-US, so the English locale wins here.
+  expect(await screen.findByRole('heading', { name: /sign in/i })).toBeInTheDocument();
   // The submit button is present.
-  expect(screen.getByRole('button', { name: /войти/i })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /sign in/i })).toBeInTheDocument();
 });

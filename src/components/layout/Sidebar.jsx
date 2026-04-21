@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../hooks/useAuth';
 import { visibleNavItems } from '../../config/nav';
-import { Icon } from '../icons';
+import { Icon } from '../common/Icon';
 import './Sidebar.css';
 
 export function Sidebar() {
@@ -12,7 +12,10 @@ export function Sidebar() {
   const items = visibleNavItems(profile?.role);
 
   return (
-    <aside className="sidebar" aria-label={t('nav.primary', { defaultValue: 'Primary' })}>
+    <aside
+      className="sidebar"
+      aria-label={t('nav.primary', { defaultValue: 'Primary' })}
+    >
       <div className="sidebar__brand">
         <span className="sidebar__brand-mark" aria-hidden>W</span>
         <span className="sidebar__brand-text">{t('app.brand')}</span>
@@ -28,7 +31,7 @@ export function Sidebar() {
                   'sidebar__link' + (isActive ? ' sidebar__link--active' : '')
                 }
               >
-                <Icon name={item.icon} size={18} className="sidebar__link-icon" />
+                <Icon name={item.icon} size="sm" className="sidebar__link-icon" />
                 <span className="sidebar__link-label">{t(`nav.${item.key}`)}</span>
               </NavLink>
             </li>

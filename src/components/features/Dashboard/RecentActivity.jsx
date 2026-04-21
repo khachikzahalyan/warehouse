@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecentActivity } from '../../../hooks/useRecentActivity';
+import { Card } from '../../common/Card';
 import './RecentActivity.css';
 
 function formatRelative(date, locale) {
@@ -21,7 +22,7 @@ export function RecentActivity() {
   const { events, loading, error } = useRecentActivity();
 
   return (
-    <section className="activity">
+    <Card as="section" padding="md" className="activity">
       <header className="activity__header">
         <h2 className="activity__title">{t('dashboard.recentActivity.title')}</h2>
       </header>
@@ -55,6 +56,6 @@ export function RecentActivity() {
           ))}
         </ul>
       )}
-    </section>
+    </Card>
   );
 }

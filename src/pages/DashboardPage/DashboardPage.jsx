@@ -1,15 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../hooks/useAuth';
-import { useDashboardStats } from '../hooks/useDashboardStats';
-import { StatCard } from '../components/features/Dashboard/StatCard';
-import { RecentActivity } from '../components/features/Dashboard/RecentActivity';
-import { BranchesOverview } from '../components/features/Dashboard/BranchesOverview';
+import { useAuth } from '../../hooks/useAuth';
+import { useDashboardStats } from '../../hooks/useDashboardStats';
+import { StatCard } from '../../components/features/Dashboard/StatCard';
+import { RecentActivity } from '../../components/features/Dashboard/RecentActivity';
+import { BranchesOverview } from '../../components/features/Dashboard/BranchesOverview';
+import { PageHeader } from '../../components/common/PageHeader';
 import './DashboardPage.css';
 
 /**
  * Super-admin dashboard. Route: /dashboard (guarded by <RequireRole role="super_admin"/>).
- * Layout: welcome header, 5 stat cards, two-column grid of RecentActivity and
+ * Layout: page header, 5 stat cards, two-column grid of RecentActivity and
  * BranchesOverview.
  */
 export function DashboardPage() {
@@ -20,11 +21,10 @@ export function DashboardPage() {
 
   return (
     <div className="dashboard-page">
-      <header className="dashboard-page__header">
-        <h1 className="dashboard-page__title">{t('dashboard.title')}</h1>
-        <p className="dashboard-page__subtitle">{t('dashboard.subtitle')}</p>
-        <p className="dashboard-page__welcome">{t('dashboard.welcome', { name })}</p>
-      </header>
+      <PageHeader
+        title={t('dashboard.title')}
+        subtitle={t('dashboard.welcome', { name })}
+      />
 
       <section className="dashboard-page__stats" aria-label={t('dashboard.title')}>
         <StatCard

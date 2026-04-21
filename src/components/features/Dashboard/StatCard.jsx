@@ -1,5 +1,6 @@
 import React from 'react';
-import { Icon } from '../../icons';
+import { Card } from '../../common/Card';
+import { Icon } from '../../common/Icon';
 import './StatCard.css';
 
 /**
@@ -7,9 +8,9 @@ import './StatCard.css';
  */
 export function StatCard({ label, value, icon, tone = 'default' }) {
   return (
-    <div className={`stat-card stat-card--${tone}`}>
+    <Card padding="md" className={`stat-card stat-card--${tone}`}>
       <span className="stat-card__icon" aria-hidden>
-        <Icon name={icon} size={22} />
+        <Icon name={icon} size="lg" />
       </span>
       <div className="stat-card__body">
         <div className="stat-card__label">{label}</div>
@@ -17,6 +18,6 @@ export function StatCard({ label, value, icon, tone = 'default' }) {
           {value === null ? '—' : value.toLocaleString()}
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

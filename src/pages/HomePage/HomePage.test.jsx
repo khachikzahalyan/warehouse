@@ -6,12 +6,12 @@
 // undici inside firebase/auth needs ReadableStream which jsdom lacks. Mock
 // the repositories so we never load the SDK in tests.
 
-jest.mock('../infra/repositories/firebaseAuthRepository', () => ({
+jest.mock('../../infra/repositories/firebaseAuthRepository', () => ({
   onAuthStateChanged: () => () => {},
   signIn: jest.fn(),
   signOut: jest.fn(),
 }));
-jest.mock('../infra/repositories/firestoreUserRepository', () => ({
+jest.mock('../../infra/repositories/firestoreUserRepository', () => ({
   subscribeProfile: () => () => {},
 }));
 
@@ -22,8 +22,8 @@ import { I18nextProvider } from 'react-i18next';
 
 // Initialize the shared i18next instance before we import the page so the
 // translations are registered.
-import i18n from '../i18n';
-import { AuthContext } from '../contexts/AuthContext';
+import i18n from '../../i18n';
+import { AuthContext } from '../../contexts/AuthContext';
 import { HomePage } from './HomePage';
 
 function renderAsRole(role) {

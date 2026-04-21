@@ -1,8 +1,8 @@
 .admin-layout {
   min-height: 100vh;
   display: flex;
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--color-bg-app);
+  color: var(--color-text-primary);
 }
 
 .admin-layout__main {
@@ -14,12 +14,16 @@
 
 .admin-layout__content {
   flex: 1;
-  padding: 24px;
+  padding: var(--space-6);
   overflow-x: auto;
 }
 
 @media (max-width: 720px) {
   .admin-layout {
     flex-direction: column;
+  }
+
+  .admin-layout__content {
+    padding: var(--space-4);
   }
 }
