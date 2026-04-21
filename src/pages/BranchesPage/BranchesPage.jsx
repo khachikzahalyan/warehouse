@@ -4,12 +4,17 @@ import { useTranslation } from 'react-i18next';
 import { PageHeader } from '../../components/common/PageHeader';
 import { EmptyState } from '../../components/common/EmptyState';
 import { Badge } from '../../components/common/Badge';
-import './UsersPage.css';
+import './BranchesPage.css';
 
-export function UsersPage() {
+/**
+ * Placeholder for the Branches page. Replaced by the real branch grid +
+ * split-view detail in Step 3. Kept minimal so the route still resolves
+ * after the 2026-04-21 rename.
+ */
+export function BranchesPage() {
   const { t } = useTranslation();
-  const sectionName = t('nav.users');
-  const description = t('nav.descriptions.users', { defaultValue: '' });
+  const sectionName = t('nav.branches');
+  const description = t('nav.descriptions.branches', { defaultValue: '' });
 
   return (
     <div className="placeholder-page">

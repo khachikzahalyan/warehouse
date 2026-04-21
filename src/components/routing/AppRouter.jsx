@@ -7,11 +7,10 @@ import { LoginPage } from '../../pages/LoginPage';
 import { HomePage } from '../../pages/HomePage';
 import { DashboardPage } from '../../pages/DashboardPage';
 import { ProfilePage } from '../../pages/ProfilePage';
-import { InventoryPage } from '../../pages/InventoryPage';
-import { TransfersPage } from '../../pages/TransfersPage';
-import { StructurePage } from '../../pages/StructurePage';
+import { WarehousePage } from '../../pages/WarehousePage';
+import { BranchesPage } from '../../pages/BranchesPage';
 import { LicensesPage } from '../../pages/LicensesPage';
-import { UsersPage } from '../../pages/UsersPage';
+import { EmployeesPage } from '../../pages/EmployeesPage';
 import { SettingsPage } from '../../pages/SettingsPage';
 import { NotFoundPage } from '../../pages/NotFoundPage';
 import { ForbiddenPage } from '../../pages/ForbiddenPage';
@@ -48,14 +47,13 @@ export function AppRouter() {
             }
           />
 
-          <Route path="inventory" element={<InventoryPage />} />
-          <Route path="transfers" element={<TransfersPage />} />
+          <Route path="warehouse" element={<WarehousePage />} />
 
           <Route
-            path="structure"
+            path="branches"
             element={
               <RequireRole roles={['admin', 'super_admin']}>
-                <StructurePage />
+                <BranchesPage />
               </RequireRole>
             }
           />
@@ -64,15 +62,15 @@ export function AppRouter() {
           <Route path="profile" element={<ProfilePage />} />
 
           <Route
-            path="admin/users"
+            path="employees"
             element={
-              <RequireRole role="super_admin">
-                <UsersPage />
+              <RequireRole roles={['admin', 'super_admin']}>
+                <EmployeesPage />
               </RequireRole>
             }
           />
           <Route
-            path="admin/settings"
+            path="settings"
             element={
               <RequireRole role="super_admin">
                 <SettingsPage />

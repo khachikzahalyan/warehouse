@@ -86,6 +86,14 @@ const paths = {
   chevronDown: <path d="M6 9l6 6 6-6" />,
 };
 
+// New nav keys aliased onto existing glyphs so the rename (inventory →
+// warehouse, structure → branches, users → employees) does not require a
+// design pass in Step 1. Fresh glyphs can replace these later without
+// touching any callers.
+paths.warehouse = paths.inventory;
+paths.branches = paths.structure;
+paths.employees = paths.users;
+
 /**
  * Generic icon renderer. `name` must be a key of `paths`.
  * @param {{ name: keyof typeof paths, size?: number, className?: string, 'aria-label'?: string, 'aria-hidden'?: boolean }} props

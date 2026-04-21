@@ -62,39 +62,41 @@ beforeAll(async () => {
 });
 
 describe('HomePage tiles', () => {
-  test('super_admin sees every nav tile, including Dashboard / Users / Settings', () => {
+  test('super_admin sees every nav tile, including Dashboard / Employees / Settings', () => {
     renderAsRole('super_admin');
-    // Every key under nav.* that maps to a tile must appear.
+    // The six tiles from NAV_ITEMS must all appear for a super_admin.
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
-    expect(screen.getByText('Inventory')).toBeInTheDocument();
-    expect(screen.getByText('Transfers')).toBeInTheDocument();
-    expect(screen.getByText('Structure')).toBeInTheDocument();
+    expect(screen.getByText('Warehouse')).toBeInTheDocument();
+    expect(screen.getByText('Employees')).toBeInTheDocument();
+    expect(screen.getByText('Branches')).toBeInTheDocument();
     expect(screen.getByText('Licenses')).toBeInTheDocument();
-    expect(screen.getByText('Users')).toBeInTheDocument();
     expect(screen.getByText('Settings')).toBeInTheDocument();
+    // Removed/renamed entries must not linger.
+    expect(screen.queryByText('Inventory')).not.toBeInTheDocument();
+    expect(screen.queryByText('Transfers')).not.toBeInTheDocument();
+    expect(screen.queryByText('Structure')).not.toBeInTheDocument();
+    expect(screen.queryByText('Users')).not.toBeInTheDocument();
   });
 
-  test('admin sees 4 tiles without Dashboard / Users / Settings', () => {
+  test('admin sees Warehouse / Employees / Branches / Licenses, but no Dashboard / Settings', () => {
     renderAsRole('admin');
     expect(screen.queryByText('Dashboard')).not.toBeInTheDocument();
-    expect(screen.queryByText('Users')).not.toBeInTheDocument();
     expect(screen.queryByText('Settings')).not.toBeInTheDocument();
 
-    expect(screen.getByText('Inventory')).toBeInTheDocument();
-    expect(screen.getByText('Transfers')).toBeInTheDocument();
-    expect(screen.getByText('Structure')).toBeInTheDocument();
+    expect(screen.getByText('Warehouse')).toBeInTheDocument();
+    expect(screen.getByText('Employees')).toBeInTheDocument();
+    expect(screen.getByText('Branches')).toBeInTheDocument();
     expect(screen.getByText('Licenses')).toBeInTheDocument();
   });
 
   test('plain user sees only tiles with no role restriction', () => {
     renderAsRole('user');
     expect(screen.queryByText('Dashboard')).not.toBeInTheDocument();
-    expect(screen.queryByText('Structure')).not.toBeInTheDocument();
-    expect(screen.queryByText('Users')).not.toBeInTheDocument();
+    expect(screen.queryByText('Employees')).not.toBeInTheDocument();
+    expect(screen.queryByText('Branches')).not.toBeInTheDocument();
     expect(screen.queryByText('Settings')).not.toBeInTheDocument();
 
-    expect(screen.getByText('Inventory')).toBeInTheDocument();
-    expect(screen.getByText('Transfers')).toBeInTheDocument();
+    expect(screen.getByText('Warehouse')).toBeInTheDocument();
     expect(screen.getByText('Licenses')).toBeInTheDocument();
   });
 });

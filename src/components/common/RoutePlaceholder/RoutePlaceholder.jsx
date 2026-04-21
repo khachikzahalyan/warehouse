@@ -9,7 +9,7 @@ import './RoutePlaceholder.css';
 /**
  * "Coming soon" panel rendered by placeholder routes. Thin wrapper around
  * <PageHeader> + <EmptyState> so every placeholder page looks identical.
- * Callers pass the i18n key of the section name (`nav.inventory`, ...).
+ * Callers pass the i18n key of the section name (`nav.warehouse`, ...).
  *
  * Kept for backwards compatibility; new placeholder pages compose
  * <PageHeader> + <EmptyState> directly.

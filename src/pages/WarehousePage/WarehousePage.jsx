@@ -4,12 +4,17 @@ import { useTranslation } from 'react-i18next';
 import { PageHeader } from '../../components/common/PageHeader';
 import { EmptyState } from '../../components/common/EmptyState';
 import { Badge } from '../../components/common/Badge';
-import './StructurePage.css';
+import './WarehousePage.css';
 
-export function StructurePage() {
+/**
+ * Placeholder for the Warehouse page. Replaced by the real assets-on-hand
+ * listing in Step 2 (Warehouse + [Выдать] flow). Kept minimal so the route
+ * still resolves after the 2026-04-21 rename.
+ */
+export function WarehousePage() {
   const { t } = useTranslation();
-  const sectionName = t('nav.structure');
-  const description = t('nav.descriptions.structure', { defaultValue: '' });
+  const sectionName = t('nav.warehouse');
+  const description = t('nav.descriptions.warehouse', { defaultValue: '' });
 
   return (
     <div className="placeholder-page">

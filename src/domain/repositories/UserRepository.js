@@ -13,7 +13,20 @@ import { toAppLocale } from '../locales';
  */
 
 /**
- * @typedef {'active' | 'disabled'} UserStatus
+ * Account status. Lifecycle:
+ *   - `active`    : can sign in, owns assets normally.
+ *   - `blocking`  : being offboarded — a ReturnChecklist is open against the user.
+ *                   Sign-in is denied; record is preserved for audit.
+ *   - `blocked`   : offboarded. ReturnChecklist closed. Sign-in denied.
+ *   - `archived`  : historical record, not expected to return. Sign-in denied.
+ *   - `disabled`  : legacy value kept for backward compatibility with existing
+ *                   Firestore documents. Treated as sign-in-denied.
+ *
+ * Only `active` may sign in. Everything else is treated as blocked by UI/auth
+ * code; transitioning away from `active` is performed by admins, never by the
+ * user themselves.
+ *
+ * @typedef {'active' | 'blocking' | 'blocked' | 'archived' | 'disabled'} UserStatus
  */
 
 /**
@@ -33,8 +46,14 @@ import { toAppLocale } from '../locales';
 /** All valid roles, in ascending privilege order. */
 export const USER_ROLES = Object.freeze(['user', 'admin', 'super_admin']);
 
-/** All valid statuses. */
-export const USER_STATUSES = Object.freeze(['active', 'disabled']);
+/** All valid statuses, ordered roughly by severity (active → archived). */
+export const USER_STATUSES = Object.freeze([
+  'active',
+  'blocking',
+  'blocked',
+  'archived',
+  'disabled',
+]);
 
 /**
  * Narrow an unknown value to a UserRole. Unknown → 'user' (least privilege).
@@ -48,14 +67,15 @@ export function toUserRole(value) {
 }
 
 /**
- * Narrow an unknown value to a UserStatus. Unknown → 'disabled' (safe default).
+ * Narrow an unknown value to a UserStatus. Unknown → 'blocked' (safe lockout
+ * default — unknown input must never grant sign-in).
  * @param {unknown} value
  * @returns {UserStatus}
  */
 export function toUserStatus(value) {
   return USER_STATUSES.includes(/** @type {UserStatus} */ (value))
     ? /** @type {UserStatus} */ (value)
-    : 'disabled';
+    : 'blocked';
 }
 
 /**

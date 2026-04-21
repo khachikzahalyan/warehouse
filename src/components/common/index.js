@@ -19,6 +19,7 @@ export { Cluster } from './Cluster';
 export { Checkbox } from './Checkbox';
 export { Switch } from './Switch';
 export { Modal } from './Modal';
+export { Drawer } from './Drawer';
 export { Table, Thead, Tbody, Tr, Th, Td } from './Table';
 export { Tabs } from './Tabs';
 export { ToastProvider, useToast } from './Toast';

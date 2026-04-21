@@ -22,14 +22,21 @@ describe('toUserRole', () => {
 });
 
 describe('toUserStatus', () => {
-  test.each(['active', 'disabled'])('accepts known status %s', (s) => {
+  test.each([
+    'active',
+    'blocking',
+    'blocked',
+    'archived',
+    'disabled',
+  ])('accepts known status %s', (s) => {
     expect(toUserStatus(s)).toBe(s);
   });
 
-  test('coerces unknown statuses to "disabled" (safe default)', () => {
-    expect(toUserStatus('pending')).toBe('disabled');
-    expect(toUserStatus(undefined)).toBe('disabled');
-    expect(toUserStatus(null)).toBe('disabled');
+  test('coerces unknown statuses to "blocked" (safe lockout default)', () => {
+    expect(toUserStatus('pending')).toBe('blocked');
+    expect(toUserStatus('offboarded')).toBe('blocked');
+    expect(toUserStatus(undefined)).toBe('blocked');
+    expect(toUserStatus(null)).toBe('blocked');
   });
 });
 
@@ -54,6 +61,12 @@ describe('role / status exports are frozen', () => {
   });
   test('USER_STATUSES is frozen and complete', () => {
     expect(Object.isFrozen(USER_STATUSES)).toBe(true);
-    expect([...USER_STATUSES]).toEqual(['active', 'disabled']);
+    expect([...USER_STATUSES]).toEqual([
+      'active',
+      'blocking',
+      'blocked',
+      'archived',
+      'disabled',
+    ]);
   });
 });

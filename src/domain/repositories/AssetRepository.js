@@ -30,6 +30,16 @@ import { APP_LOCALES, toAppLocale } from '../locales';
  * Fields that ARE translatable per-asset via the *I18n maps:
  *   name (override via nameI18n), description (override via descriptionI18n).
  *
+ * HolderType convention (agreed 2026-04-21):
+ *   - `'user'`       — assigned to a person; `holderId` = user uid; `branchId`
+ *                      still reflects where that user works.
+ *   - `'department'` — assigned to a department as a whole.
+ *   - `'storage'`    — physically in a branch but NOT assigned to any person.
+ *                      Assets shown in the Branches section use this value
+ *                      together with a non-null `branchId`. There is NO
+ *                      separate `'branch'` holderType — we keep the enum small
+ *                      and rely on `branchId` for the location axis.
+ *
  * @typedef {Object} Asset
  * @property {string} id
  * @property {string} sku
