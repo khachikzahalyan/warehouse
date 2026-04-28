@@ -14,6 +14,7 @@ import { EmployeesPage } from '../../pages/EmployeesPage';
 import { SettingsPage } from '../../pages/SettingsPage';
 import { NotFoundPage } from '../../pages/NotFoundPage';
 import { ForbiddenPage } from '../../pages/ForbiddenPage';
+import { WarehouseAssetPage } from '../../pages/WarehouseAsset/WarehouseAssetPage';
 
 // Opt into v7 behaviour now to silence v6 deprecation warnings and make
 // the eventual upgrade a no-op.
@@ -48,6 +49,7 @@ export function AppRouter() {
           />
 
           <Route path="warehouse" element={<WarehousePage />} />
+          <Route path="warehouse/:assetId" element={<WarehouseAssetPage />} />
 
           <Route
             path="branches"

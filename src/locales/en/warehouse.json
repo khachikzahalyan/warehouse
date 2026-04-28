@@ -1,0 +1,226 @@
+{
+  "addKind": {
+    "title": "Add new kind",
+    "nameField": "Name (per language)",
+    "nameEn": "English",
+    "nameRu": "Russian",
+    "nameHy": "Armenian",
+    "idField": "Id (lowercase, snake_case)",
+    "idHint": "Used as the database value. Letters, digits, underscores only.",
+    "typesField": "Initial types (one per line, optional)",
+    "typesHint": "Free-form names — translations can be added later.",
+    "save": "Save",
+    "cancel": "Cancel",
+    "errorRequired": "Fill at least one language and an id.",
+    "errorIdFormat": "Id must be lowercase letters, digits or underscores.",
+    "errorDuplicate": "A kind with this id already exists.",
+    "addButtonAria": "Add a new kind"
+  },
+  "addAsset": {
+    "button": "+ Add asset",
+    "cancel": "Cancel",
+    "codeRequiredHint": "Inventory code required when price exceeds {{amount}} AMD",
+    "created": "Asset created",
+    "condition": {
+      "new": "New",
+      "used": "Used"
+    },
+    "fields": {
+      "category": "Type",
+      "categoryNotConfigured": "Categories not configured — ask super_admin",
+      "code": "Code",
+      "condition": "Condition",
+      "currency": "Currency",
+      "empty": "Nothing matches",
+      "hasCode": "Does this item have a code?",
+      "kind": "Kind",
+      "model": "Model / Specs",
+      "name": "Name",
+      "price": "Price",
+      "quantity": "Quantity",
+      "warrantyEnd": "Warranty end",
+      "warrantyStart": "Warranty start"
+    },
+    "groups": {
+      "condition": "Condition & warranty",
+      "identity": "Identification",
+      "pricing": "Pricing & code"
+    },
+    "hasCode": {
+      "no": "No",
+      "yes": "Yes"
+    },
+    "save": "Save",
+    "thresholdHint": "Inventory code is required when price exceeds {{amount}} AMD.",
+    "title": "Add asset",
+    "undo": "Undo",
+    "unique": {
+      "checking": "Checking…",
+      "free": "Available",
+      "openExisting": "Already exists: {{name}} — open",
+      "taken": "Already exists: {{name}}"
+    }
+  },
+  "asset": {
+    "backToList": "← Back to warehouse",
+    "field": {
+      "code": "Code",
+      "condition": "Condition",
+      "created": "Added",
+      "kind": "Kind",
+      "model": "Model / Specs",
+      "quantity": "Quantity",
+      "type": "Type",
+      "warranty": "Warranty"
+    },
+    "notFoundTitle": "Asset not found",
+    "title": "Asset detail"
+  },
+  "actions": {
+    "details": "Details",
+    "edit": "Edit",
+    "delete": "Delete",
+    "transfer": "Transfer"
+  },
+  "categories": {
+    "desktop": "Computer",
+    "furniture": "Furniture",
+    "laptop": "Laptop",
+    "monitor": "Monitor",
+    "other": "Other",
+    "peripheral": "Accessories",
+    "phone": "Phone",
+    "tablet": "Tablet",
+    "vehicle": "Vehicle"
+  },
+  "deleteAsset": {
+    "title": "Delete item?",
+    "body": "Item “{{name}}” will be archived. You can undo this later.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "details": {
+    "branch": "Branch",
+    "holder": "Holder",
+    "invoice": "Invoice",
+    "supplier": "Supplier",
+    "warrantyRange": "Warranty"
+  },
+  "editAsset": {
+    "title": "Edit item",
+    "save": "Save",
+    "cancel": "Cancel",
+    "kindLocked": "Kind cannot be changed after creation."
+  },
+  "empty": {
+    "addFirst": "Add the first item",
+    "description": "No items are stored yet.",
+    "title": "Warehouse is empty"
+  },
+  "errors": {
+    "codeRequiredAboveThreshold": "Inventory code required for items over {{amount}} AMD",
+    "kindRequired": "Pick a kind",
+    "min1": "Must be at least 1",
+    "required": "Required",
+    "warrantyEndBeforeStart": "Warranty end is before start",
+    "unique": {
+      "barcode": "This code is already in use",
+      "serialNumber": "This serial number is already in use",
+      "sku": "This code is already in use"
+    }
+  },
+  "filter": {
+    "all": "All",
+    "kindAriaLabel": "Filter by kind"
+  },
+  "kinds": {
+    "accessory": "Accessory",
+    "addNew": "Add kind",
+    "device": "Device",
+    "furniture": "Furniture",
+    "other": "Other"
+  },
+  "search": {
+    "placeholder": "Search by name, code, model…"
+  },
+  "storage": {
+    "label": "Storage"
+  },
+  "table": {
+    "category": "Type",
+    "code": "Code",
+    "kind": "Kind",
+    "model": "Model",
+    "name": "Name",
+    "needsReviewBadge": "Needs review",
+    "quantity": "Qty"
+  },
+  "title": "Warehouse",
+  "transferAsset": {
+    "title": "Transfer item",
+    "subtitle": "“{{name}}”",
+    "holderTypeLabel": "Recipient kind",
+    "holderType": { "branch": "Branch", "employee": "Employee" },
+    "targetLabel": "Recipient",
+    "targetPlaceholder": "Name or branch name",
+    "noteLabel": "Note (optional)",
+    "submit": "Transfer",
+    "cancel": "Cancel",
+    "trialNotice": "Trial mode: transfer without PIN confirmation."
+  },
+  "types": {
+    "ac_unit": "Air conditioner",
+    "adapter": "Adapter",
+    "bookshelf": "Bookshelf",
+    "cabinet": "Cabinet",
+    "cable": "Cable",
+    "card_reader": "Card reader",
+    "chair": "Chair",
+    "charger": "Charger",
+    "coat_rack": "Coat rack",
+    "conference_table": "Conference table",
+    "desk": "Desk",
+    "desktop": "Desktop computer",
+    "dock_station": "Docking station",
+    "external_hdd": "External HDD",
+    "fridge": "Fridge",
+    "hdd_dock": "HDD dock",
+    "headset": "Headset",
+    "ip_phone": "IP phone",
+    "kettle": "Kettle",
+    "keyboard": "Keyboard",
+    "lamp": "Lamp",
+    "laptop": "Laptop",
+    "locker": "Locker",
+    "microphone": "Microphone",
+    "microwave": "Microwave",
+    "mirror": "Mirror",
+    "monitor": "Monitor",
+    "mouse": "Mouse",
+    "mousepad": "Mousepad",
+    "nas": "NAS",
+    "office_chair": "Office chair",
+    "other_misc": "Miscellaneous",
+    "pedestal": "Pedestal",
+    "phone": "Phone",
+    "presenter_remote": "Presenter remote",
+    "printer": "Printer",
+    "printer_stand": "Printer stand",
+    "projector": "Projector",
+    "router": "Router",
+    "safe": "Safe",
+    "scanner": "Scanner",
+    "server_rack": "Server rack",
+    "smart_tv": "Smart TV",
+    "sofa": "Sofa",
+    "switch": "Switch",
+    "table": "Table",
+    "tablet": "Tablet",
+    "ups": "UPS",
+    "usb_hub": "USB hub",
+    "usb_stick": "USB stick",
+    "water_cooler": "Water cooler",
+    "webcam": "Webcam",
+    "whiteboard": "Whiteboard"
+  }
+}

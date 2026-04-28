@@ -1,0 +1,226 @@
+{
+  "addKind": {
+    "title": "Ավելացնել նոր տեսակ",
+    "nameField": "Անվանում (ըստ լեզվի)",
+    "nameEn": "Անգլերեն",
+    "nameRu": "Ռուսերեն",
+    "nameHy": "Հայերեն",
+    "idField": "Id (փոքրատառ, snake_case)",
+    "idHint": "Պահպանվում է որպես արժեք բազայում։ Միայն տառեր, թվեր և ընդգծումներ։",
+    "typesField": "Սկզբնական տիպեր (յուրաքանչյուրը նոր տողում, ոչ պարտադիր)",
+    "typesHint": "Ազատ անվանումներ — թարգմանությունները կարելի է ավելացնել ավելի ուշ։",
+    "save": "Պահպանել",
+    "cancel": "Չեղարկել",
+    "errorRequired": "Լրացրեք առնվազն մեկ լեզու և id։",
+    "errorIdFormat": "Id-ն պետք է բաղկացած լինի փոքրատառերից, թվերից և ընդգծումներից։",
+    "errorDuplicate": "Այս id-ով տեսակ արդեն գոյություն ունի։",
+    "addButtonAria": "Ավելացնել նոր տեսակ"
+  },
+  "addAsset": {
+    "button": "+ Ավելացնել իր",
+    "cancel": "Չեղարկել",
+    "codeRequiredHint": "Գույքագրման կոդը պարտադիր է, երբ գինը գերազանցում է {{amount}} AMD",
+    "created": "Իրը ավելացված է",
+    "condition": {
+      "new": "Նոր",
+      "used": "Օգտագործված"
+    },
+    "fields": {
+      "category": "Տեսակ",
+      "categoryNotConfigured": "Կատեգորիաները կարգավորված չեն — դիմեք գերադմինիստրատորին",
+      "code": "Կոդ",
+      "condition": "Վիճակ",
+      "currency": "Արժույթ",
+      "empty": "Ոչինչ չի գտնվել",
+      "hasCode": "Այս իրը կոդ ունի՞",
+      "kind": "Տեսակ",
+      "model": "Մոդել / Բնութագրեր",
+      "name": "Անվանում",
+      "price": "Գին",
+      "quantity": "Քանակ",
+      "warrantyEnd": "Երաշխիք — ավարտ",
+      "warrantyStart": "Երաշխիք — սկիզբ"
+    },
+    "groups": {
+      "condition": "Վիճակ և երաշխիք",
+      "identity": "Նույնականացում",
+      "pricing": "Գին և կոդ"
+    },
+    "hasCode": {
+      "no": "Ոչ",
+      "yes": "Այո"
+    },
+    "save": "Պահպանել",
+    "thresholdHint": "Գույքագրման կոդը պարտադիր է, երբ գինը գերազանցում է {{amount}} AMD։",
+    "title": "Ավելացնել իր",
+    "undo": "Հետ կանչել",
+    "unique": {
+      "checking": "Ստուգվում է…",
+      "free": "Հասանելի է",
+      "openExisting": "Արդեն գոյություն ունի՝ {{name}} — բացել",
+      "taken": "Արդեն գոյություն ունի՝ {{name}}"
+    }
+  },
+  "asset": {
+    "backToList": "← Վերադառնալ պահեստ",
+    "field": {
+      "code": "Կոդ",
+      "condition": "Վիճակ",
+      "created": "Ավելացված է",
+      "kind": "Տեսակ",
+      "model": "Մոդել / Բնութագրեր",
+      "quantity": "Քանակ",
+      "type": "Տեսակ",
+      "warranty": "Երաշխիք"
+    },
+    "notFoundTitle": "Իրը չի գտնվել",
+    "title": "Իրի մանրամասներ"
+  },
+  "actions": {
+    "details": "Մանրամասներ",
+    "edit": "Փոխել",
+    "delete": "Ջնջել",
+    "transfer": "Փոխանցել"
+  },
+  "categories": {
+    "desktop": "Համակարգիչ",
+    "furniture": "Կահույք",
+    "laptop": "Նոթբուք",
+    "monitor": "Մոնիտոր",
+    "other": "Այլ",
+    "peripheral": "Աքսեսուարներ",
+    "phone": "Հեռախոս",
+    "tablet": "Պլանշետ",
+    "vehicle": "Տրանսպորտ"
+  },
+  "deleteAsset": {
+    "title": "Ջնջե՞լ իրը",
+    "body": "«{{name}}» իրը կարխիվացվի։ Կարող եք ետ կանչել։",
+    "confirm": "Ջնջել",
+    "cancel": "Չեղարկել"
+  },
+  "details": {
+    "branch": "Մասնաճյուղ",
+    "holder": "Տիրապետող",
+    "invoice": "Հաշիվ-ապրանքագիր",
+    "supplier": "Մատակարար",
+    "warrantyRange": "Երաշխիք"
+  },
+  "editAsset": {
+    "title": "Փոխել իրը",
+    "save": "Պահպանել",
+    "cancel": "Չեղարկել",
+    "kindLocked": "Տեսակը չի կարող փոխվել ստեղծելուց հետո։"
+  },
+  "empty": {
+    "addFirst": "Ավելացնել առաջին իրը",
+    "description": "Պահեստում դեռ իրեր չկան։",
+    "title": "Պահեստը դատարկ է"
+  },
+  "errors": {
+    "codeRequiredAboveThreshold": "Գույքագրման կոդը պարտադիր է {{amount}} AMD-ից թանկ իրերի համար",
+    "kindRequired": "Ընտրեք տեսակը",
+    "min1": "Նվազագույնը 1",
+    "required": "Պարտադիր դաշտ",
+    "warrantyEndBeforeStart": "Երաշխիքի ավարտը ավելի վաղ է, քան սկիզբը",
+    "unique": {
+      "barcode": "Այս կոդն արդեն օգտագործվում է",
+      "serialNumber": "Այս սերիական համարն արդեն օգտագործվում է",
+      "sku": "Այս կոդն արդեն օգտագործվում է"
+    }
+  },
+  "filter": {
+    "all": "Բոլորը",
+    "kindAriaLabel": "Զտիչ՝ ըստ տեսակի"
+  },
+  "kinds": {
+    "accessory": "Աքսեսուար",
+    "addNew": "Ավելացնել տեսակ",
+    "device": "Սարք",
+    "furniture": "Կահույք",
+    "other": "Այլ"
+  },
+  "search": {
+    "placeholder": "Որոնում ըստ անվան, կոդի, մոդելի…"
+  },
+  "storage": {
+    "label": "Պահեստ"
+  },
+  "table": {
+    "category": "Տեսակ",
+    "code": "Կոդ",
+    "kind": "Տեսակ",
+    "model": "Մոդել",
+    "name": "Անվանում",
+    "needsReviewBadge": "Պահանջում է ստուգում",
+    "quantity": "Քանակ"
+  },
+  "title": "Պահեստ",
+  "transferAsset": {
+    "title": "Փոխանցել իրը",
+    "subtitle": "«{{name}}»",
+    "holderTypeLabel": "Ում ենք փոխանցում",
+    "holderType": { "branch": "Մասնաճյուղին", "employee": "Աշխատակցին" },
+    "targetLabel": "Ստացող",
+    "targetPlaceholder": "Անուն կամ մասնաճյուղի անուն",
+    "noteLabel": "Մեկնաբանություն (ոչ պարտադիր)",
+    "submit": "Փոխանցել",
+    "cancel": "Չեղարկել",
+    "trialNotice": "Փորձնական ռեժիմ՝ առանց PIN հաստատման"
+  },
+  "types": {
+    "ac_unit": "Օդորակիչ",
+    "adapter": "Ադապտեր",
+    "bookshelf": "Գրապահարան",
+    "cabinet": "Պահարան",
+    "cable": "Մալուխ",
+    "card_reader": "Քարտ ընթերցող",
+    "chair": "Աթոռ",
+    "charger": "Լիցքավորիչ",
+    "coat_rack": "Հանդերձարան",
+    "conference_table": "Կոնֆերանս սեղան",
+    "desk": "Գրասեղան",
+    "desktop": "Սեղանադիր համակարգիչ",
+    "dock_station": "Դոկ կայան",
+    "external_hdd": "Արտաքին HDD",
+    "fridge": "Սառնարան",
+    "hdd_dock": "HDD դոկ",
+    "headset": "Ականջակալ",
+    "ip_phone": "IP հեռախոս",
+    "kettle": "Թեյնիկ",
+    "keyboard": "Ստեղնաշար",
+    "lamp": "Լամպ",
+    "laptop": "Նոթբուք",
+    "locker": "Լոքեր",
+    "microphone": "Միկրոֆոն",
+    "microwave": "Միկրոալիքային վառարան",
+    "mirror": "Հայելի",
+    "monitor": "Մոնիտոր",
+    "mouse": "Մկնիկ",
+    "mousepad": "Մկնիկի գորգ",
+    "nas": "NAS",
+    "office_chair": "Գրասենյակային աթոռ",
+    "other_misc": "Այլ",
+    "pedestal": "Տակդիր",
+    "phone": "Հեռախոս",
+    "presenter_remote": "Պրեզենտեր",
+    "printer": "Տպիչ",
+    "printer_stand": "Տպիչի տակդիր",
+    "projector": "Պրոյեկտոր",
+    "router": "Ռոութեր",
+    "safe": "Չհրկիզվող պահարան",
+    "scanner": "Սկաներ",
+    "server_rack": "Սերվերային դարակ",
+    "smart_tv": "Սմարթ ՀԵՌ",
+    "sofa": "Բազմոց",
+    "switch": "Սվիչ",
+    "table": "Սեղան",
+    "tablet": "Պլանշետ",
+    "ups": "Անխափան սնուցման աղբյուր",
+    "usb_hub": "USB-հաբ",
+    "usb_stick": "USB ֆլեշկա",
+    "water_cooler": "Ջրի դիսպենսեր",
+    "webcam": "Վեբ-տեսախցիկ",
+    "whiteboard": "Մարկերային գրատախտակ"
+  }
+}

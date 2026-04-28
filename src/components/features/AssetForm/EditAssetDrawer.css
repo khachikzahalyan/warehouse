@@ -1,0 +1,34 @@
+.edit-asset-drawer__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.edit-asset-drawer__condition {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-asset-drawer__row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.edit-asset-drawer__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.edit-asset-drawer__error {
+  color: var(--color-danger, #dc2626);
+  margin: 0;
+}
+
+.edit-asset-drawer__locked-hint {
+  margin: 6px 0 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}

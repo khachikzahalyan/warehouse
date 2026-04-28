@@ -26,3 +26,6 @@ export { ToastProvider, useToast } from './Toast';
 export { Tooltip } from './Tooltip';
 export { Menu } from './Menu';
 export { RoutePlaceholder } from './RoutePlaceholder';
+export { SearchableSelect } from './SearchableSelect';
+export { FieldGroup } from './FieldGroup';
+export { SegmentedControl } from './SegmentedControl';

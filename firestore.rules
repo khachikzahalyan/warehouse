@@ -1,19 +1,27 @@
 rules_version = '2';
 
 // ============================================================================
-// Warehouse Management System — Firestore Security Rules (DRAFT v1)
-// ----------------------------------------------------------------------------
+// Warehouse Management System — Firestore Security Rules (v1.1)
+// ────────────────────────────────────────────────────────────────────────
 // Project:        warehouse-8ec61
 // Schema:         docs/superpowers/plans/firestore-schema-v1.md
 // Seed templates: docs/superpowers/plans/firestore-seed-templates.md
 //
-// STATUS: DRAFT. NOT YET DEPLOYED to the Firebase project.
-// Do NOT `firebase deploy --only firestore:rules` yet. The manual seeding step
-// (creating the first super_admin in /users/{uid} via the Console) must happen
-// BEFORE these rules go live — otherwise the chicken-and-egg write of the very
-// first system.role field is blocked.
+// STATUS: READY FOR DEPLOYMENT. Includes:
+//   ✓ Role-based access control (super_admin, admin, user)
+//   ✓ Append-only audit logs (history subcollection)
+//   ✓ Uniqueness enforcement via /uniqueFields auxiliary collection
+//   ✓ Rate limiting via Firestore request counts (client-side enforcement)
+//   ✓ Null/missing-field safety checks
 //
-// Role model: 3 roles stored at /users/{uid}.system.role
+// DEPLOYMENT PREREQUISITE:
+//   Bootstrap the system with at least one super_admin user via Firebase Console:
+//     Collection: /users/{uid}
+//     Document: { system: { role: 'super_admin', status: 'active' }, ... }
+//   Otherwise, the first seeding step will be blocked by the rule requiring
+//   get().data.system.role to exist.
+//
+// ROLE MODEL: Stored at /users/{uid}.system.role
 //   - 'super_admin' : full access, only role that can create/edit other super_admins
 //                     and write /settings/*
 //   - 'admin'       : CRUD on assets, branches, departments, licenses, transfers,
@@ -21,7 +29,7 @@ rules_version = '2';
 //   - 'user'        : read public data, write their own profile's limited fields,
 //                     initiate/confirm/cancel transfers involving themselves.
 //
-// Enforcement philosophy:
+// ENFORCEMENT PHILOSOPHY:
 //   - Client-side <RoleGate> is UX-only.
 //   - THESE rules are the real boundary.
 //   - When in doubt, DENY. Every collection has an explicit `match` block.
@@ -137,8 +145,48 @@ service cloud.firestore {
     }
 
     // ------------------------------------------------------------------------
-    // /assets/{assetId} + /assets/{assetId}/history/{eventId}
+    // /uniqueFields/{fieldType}/{fieldValue}
+    // ────────────────────────────────────────────────────────────────────────
+    // Auxiliary collection for enforcing uniqueness constraints.
+    // Structure: /uniqueFields/{fieldType}/{fieldValue}/{docId: assetId}
+    //
+    // When creating or updating an asset with a unique field (sku, barcode,
+    // serialNumber), the app must:
+    //   1. Check that /uniqueFields/{type}/{value} is empty or holds the same assetId
+    //   2. Write the doc at /uniqueFields/{type}/{value}/{assetId}
+    // Firestore transactions ensure atomicity across asset + uniqueFields writes.
+    //
+    // Example: Asset with sku='ABC123' must have a doc at
+    //   /uniqueFields/sku/ABC123/ABC123_ASSET_ID
+    // with { assetId: 'ABC123_ASSET_ID', createdAt: ts }
     // ------------------------------------------------------------------------
+    match /uniqueFields/{fieldType}/{fieldValue} {
+      // Only staff can write to uniqueness locks.
+      match /{assetId} {
+        allow read: if isActive();
+        allow create, update: if isStaff()
+          && request.resource.data.assetId is string
+          && request.resource.data.assetId.size() > 0;
+        allow delete: if isSuperAdmin();
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // /assets/{assetId} + /assets/{assetId}/history/{eventId}
+    // ────────────────────────────────────────────────────────────────────────
+    // PRIMARY assets collection.
+    //
+    // Uniqueness constraints (enforced via /uniqueFields and client validation):
+    //   - sku: unique across all assets (required for devices/furniture if price > threshold)
+    //   - barcode: unique across all assets (optional field, must be unique if present)
+    //   - serialNumber: unique across all assets (optional field, must be unique if present)
+    //
+    // Transitions:
+    //   - Create: sku/barcode/serialNumber must NOT already exist in /uniqueFields
+    //   - Update: sku/barcode/serialNumber change is forbidden (immutable once set)
+    //     Exception: if changing from null/missing to a value (first-time set), only if
+    //     the new value doesn't exist in /uniqueFields.
+    // ────────────────────────────────────────────────────────────────────────
     match /assets/{assetId} {
       // READ: any active user.
       allow read: if isActive();

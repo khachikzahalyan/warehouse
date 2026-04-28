@@ -1,0 +1,138 @@
+.warehouse-table__actions-th {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.warehouse-table__actions-cell {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.warehouse-table__actions {
+  display: inline-flex;
+  gap: 6px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Base button — preserved for any non-icon caller. New row actions opt into
+   `--icon` for the square 32×32 geometry. */
+.warehouse-table__action {
+  appearance: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.warehouse-table__action:hover {
+  background: var(--color-bg-subtle);
+}
+
+.warehouse-table__action:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.warehouse-table__action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Icon variant — used by row actions (Details/Edit/Transfer/Delete) ── */
+.warehouse-table__action--icon {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  box-shadow: var(--shadow-glass-1);
+}
+
+.warehouse-table__action--icon:hover {
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-glass-2);
+}
+
+.warehouse-table__action--icon:active {
+  background: var(--color-bg-subtle);
+  box-shadow: var(--shadow-glass-1);
+}
+
+/* ── Primary variant (Transfer) ──────────────────────────────────────── */
+.warehouse-table__action--primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.warehouse-table__action--primary:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+}
+
+.warehouse-table__action--primary:active {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.warehouse-table__action--icon.warehouse-table__action--primary {
+  /* Primary keeps a soft branded shadow at all times so it reads as the lead action. */
+  box-shadow:
+    0 1px 2px rgba(37, 99, 235, 0.20),
+    0 1px 1px rgba(37, 99, 235, 0.12);
+}
+
+.warehouse-table__action--icon.warehouse-table__action--primary:hover {
+  box-shadow:
+    0 4px 12px -2px rgba(37, 99, 235, 0.32),
+    0 2px 4px -1px rgba(37, 99, 235, 0.20);
+}
+
+/* ── Danger variant (Delete) ─────────────────────────────────────────── */
+.warehouse-table__action--danger {
+  color: var(--color-danger);
+  border-color: var(--color-border);
+}
+
+.warehouse-table__action--danger:hover {
+  background: var(--color-danger-soft);
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.warehouse-table__action--danger:focus-visible {
+  /* Red focus ring on the destructive action — confirms severity. */
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.18);
+}
+
+.warehouse-table__action--danger:active {
+  background: var(--color-danger-soft);
+}
+
+.warehouse-table__action--icon.warehouse-table__action--danger {
+  /* No baseline lift on danger — it appears only on hover, signalling
+     that the destructive action becomes "live". */
+  box-shadow: none;
+}
+
+.warehouse-table__action--icon.warehouse-table__action--danger:hover {
+  box-shadow: 0 2px 6px rgba(185, 28, 28, 0.18);
+}

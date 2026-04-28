@@ -84,6 +84,35 @@ const paths = {
     </>
   ),
   chevronDown: <path d="M6 9l6 6 6-6" />,
+  // Row-action glyphs for WarehouseTable. Stroke-width 2 outline, 24×24
+  // viewBox. Optical centring matches the rest of the kit at 18px render.
+  eye: (
+    <>
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+      <circle cx="12" cy="12" r="3" />
+    </>
+  ),
+  pencil: (
+    <>
+      <path d="M4 20h4l10-10-4-4L4 16v4z" />
+      <path d="M14 6l4 4" />
+    </>
+  ),
+  arrowRight: (
+    <>
+      <path d="M5 12h14" />
+      <path d="M13 6l6 6-6 6" />
+    </>
+  ),
+  trash: (
+    <>
+      <path d="M3 6h18" />
+      <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+      <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
+      <path d="M10 11v6" />
+      <path d="M14 11v6" />
+    </>
+  ),
 };
 
 // New nav keys aliased onto existing glyphs so the rename (inventory →

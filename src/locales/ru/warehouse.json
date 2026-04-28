@@ -1,0 +1,226 @@
+{
+  "addKind": {
+    "title": "Добавить новый вид",
+    "nameField": "Название (на разных языках)",
+    "nameEn": "Английский",
+    "nameRu": "Русский",
+    "nameHy": "Армянский",
+    "idField": "Id (нижний регистр, snake_case)",
+    "idHint": "Сохраняется как значение в базе. Только буквы, цифры и подчёркивания.",
+    "typesField": "Начальные типы (по одному в строке, необязательно)",
+    "typesHint": "Свободные названия — переводы можно добавить позже.",
+    "save": "Сохранить",
+    "cancel": "Отменить",
+    "errorRequired": "Заполните хотя бы один язык и id.",
+    "errorIdFormat": "Id должен состоять из строчных букв, цифр и подчёркиваний.",
+    "errorDuplicate": "Вид с таким id уже существует.",
+    "addButtonAria": "Добавить новый вид"
+  },
+  "addAsset": {
+    "button": "+ Добавить вещь",
+    "cancel": "Отменить",
+    "codeRequiredHint": "Инвентарный код обязателен, когда цена превышает {{amount}} AMD",
+    "created": "Вещь добавлена",
+    "condition": {
+      "new": "Новый",
+      "used": "Использованный"
+    },
+    "fields": {
+      "category": "Тип",
+      "categoryNotConfigured": "Категории не настроены — обратитесь к супер-админу",
+      "code": "Код",
+      "condition": "Состояние",
+      "currency": "Валюта",
+      "empty": "Ничего не найдено",
+      "hasCode": "Эта вещь имеет код?",
+      "kind": "Вид",
+      "model": "Модель / Характеристики",
+      "name": "Название",
+      "price": "Цена",
+      "quantity": "Количество",
+      "warrantyEnd": "Гарантия — конец",
+      "warrantyStart": "Гарантия — начало"
+    },
+    "groups": {
+      "condition": "Состояние и гарантия",
+      "identity": "Идентификация",
+      "pricing": "Цена и код"
+    },
+    "hasCode": {
+      "no": "Нет",
+      "yes": "Да"
+    },
+    "save": "Сохранить",
+    "thresholdHint": "Инвентарный код обязателен, когда цена превышает {{amount}} AMD.",
+    "title": "Добавить вещь",
+    "undo": "Отменить",
+    "unique": {
+      "checking": "Проверка…",
+      "free": "Свободно",
+      "openExisting": "Уже есть: {{name}} — открыть",
+      "taken": "Уже есть: {{name}}"
+    }
+  },
+  "asset": {
+    "backToList": "← Назад к складу",
+    "field": {
+      "code": "Код",
+      "condition": "Состояние",
+      "created": "Добавлено",
+      "kind": "Вид",
+      "model": "Модель / Характеристики",
+      "quantity": "Количество",
+      "type": "Тип",
+      "warranty": "Гарантия"
+    },
+    "notFoundTitle": "Вещь не найдена",
+    "title": "Детали вещи"
+  },
+  "actions": {
+    "details": "Детали",
+    "edit": "Изменить",
+    "delete": "Удалить",
+    "transfer": "Передать"
+  },
+  "categories": {
+    "desktop": "Компьютер",
+    "furniture": "Мебель",
+    "laptop": "Ноутбук",
+    "monitor": "Монитор",
+    "other": "Прочее",
+    "peripheral": "Аксессуары",
+    "phone": "Телефон",
+    "tablet": "Планшет",
+    "vehicle": "Транспорт"
+  },
+  "deleteAsset": {
+    "title": "Удалить вещь?",
+    "body": "Вещь «{{name}}» будет архивирована. Это действие можно отменить позже.",
+    "confirm": "Удалить",
+    "cancel": "Отменить"
+  },
+  "details": {
+    "branch": "Филиал",
+    "holder": "Держатель",
+    "invoice": "Накладная",
+    "supplier": "Поставщик",
+    "warrantyRange": "Гарантия"
+  },
+  "editAsset": {
+    "title": "Изменить вещь",
+    "save": "Сохранить",
+    "cancel": "Отменить",
+    "kindLocked": "Вид нельзя изменить после создания."
+  },
+  "empty": {
+    "addFirst": "Добавить первую вещь",
+    "description": "На складе пока нет ни одной вещи.",
+    "title": "Склад пуст"
+  },
+  "errors": {
+    "codeRequiredAboveThreshold": "Инвентарный код обязателен для вещей дороже {{amount}} AMD",
+    "kindRequired": "Выберите вид",
+    "min1": "Минимум 1",
+    "required": "Обязательное поле",
+    "warrantyEndBeforeStart": "Конец гарантии раньше начала",
+    "unique": {
+      "barcode": "Этот код уже используется",
+      "serialNumber": "Этот серийный номер уже используется",
+      "sku": "Этот код уже используется"
+    }
+  },
+  "filter": {
+    "all": "Все",
+    "kindAriaLabel": "Фильтр по виду"
+  },
+  "kinds": {
+    "accessory": "Аксессуар",
+    "addNew": "Добавить вид",
+    "device": "Устройство",
+    "furniture": "Мебель",
+    "other": "Прочее"
+  },
+  "search": {
+    "placeholder": "Поиск по названию, коду, модели…"
+  },
+  "storage": {
+    "label": "Склад"
+  },
+  "table": {
+    "category": "Тип",
+    "code": "Код",
+    "kind": "Вид",
+    "model": "Модель",
+    "name": "Название",
+    "needsReviewBadge": "Требует проверки",
+    "quantity": "Кол-во"
+  },
+  "title": "Склад",
+  "transferAsset": {
+    "title": "Передать вещь",
+    "subtitle": "«{{name}}»",
+    "holderTypeLabel": "Кому передаём",
+    "holderType": { "branch": "Филиалу", "employee": "Сотруднику" },
+    "targetLabel": "Получатель",
+    "targetPlaceholder": "Имя или название филиала",
+    "noteLabel": "Комментарий (необязательно)",
+    "submit": "Передать",
+    "cancel": "Отменить",
+    "trialNotice": "Пробный режим: передача без подтверждения PIN."
+  },
+  "types": {
+    "ac_unit": "Кондиционер",
+    "adapter": "Адаптер",
+    "bookshelf": "Книжная полка",
+    "cabinet": "Шкаф",
+    "cable": "Кабель",
+    "card_reader": "Кардридер",
+    "chair": "Стул",
+    "charger": "Зарядное устройство",
+    "coat_rack": "Вешалка",
+    "conference_table": "Стол для переговоров",
+    "desk": "Письменный стол",
+    "desktop": "Настольный компьютер",
+    "dock_station": "Док-станция",
+    "external_hdd": "Внешний HDD",
+    "fridge": "Холодильник",
+    "hdd_dock": "Док для HDD",
+    "headset": "Гарнитура",
+    "ip_phone": "IP-телефон",
+    "kettle": "Чайник",
+    "keyboard": "Клавиатура",
+    "lamp": "Лампа",
+    "laptop": "Ноутбук",
+    "locker": "Локер",
+    "microphone": "Микрофон",
+    "microwave": "Микроволновка",
+    "mirror": "Зеркало",
+    "monitor": "Монитор",
+    "mouse": "Мышь",
+    "mousepad": "Коврик для мыши",
+    "nas": "NAS",
+    "office_chair": "Офисное кресло",
+    "other_misc": "Прочее",
+    "pedestal": "Тумба",
+    "phone": "Телефон",
+    "presenter_remote": "Презентер",
+    "printer": "Принтер",
+    "printer_stand": "Подставка для принтера",
+    "projector": "Проектор",
+    "router": "Роутер",
+    "safe": "Сейф",
+    "scanner": "Сканер",
+    "server_rack": "Серверная стойка",
+    "smart_tv": "Смарт-ТВ",
+    "sofa": "Диван",
+    "switch": "Свитч",
+    "table": "Стол",
+    "tablet": "Планшет",
+    "ups": "ИБП",
+    "usb_hub": "USB-хаб",
+    "usb_stick": "USB-флешка",
+    "water_cooler": "Кулер для воды",
+    "webcam": "Веб-камера",
+    "whiteboard": "Маркерная доска"
+  }
+}

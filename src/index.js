@@ -1,5 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+// Inter (self-hosted via @fontsource) — load BEFORE index.css so the
+// --font-family-base token resolves to a real loaded face on first paint.
+// Only the four weights the app actually uses are pulled in; tree-shaking
+// keeps the bundle lean.
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+
 import './index.css';
 import './i18n'; // initialize i18next before any component reads t()
 import App from './App';

@@ -69,9 +69,9 @@
   },
   "category": {
     "laptop": "Ноутбук",
-    "desktop": "Настольный ПК",
+    "desktop": "Компьютер",
     "monitor": "Монитор",
-    "peripheral": "Периферия",
+    "peripheral": "Аксессуары",
     "phone": "Телефон",
     "tablet": "Планшет",
     "furniture": "Мебель",
@@ -108,6 +108,7 @@
     "stub": "Это заглушка dashboard. Функциональность появится в следующих итерациях.",
     "stats": {
       "totalAssets": "Всего активов",
+      "storageAssets": "Вещей на складе",
       "pendingTransfers": "Ожидают передачи",
       "users": "Пользователи",
       "branches": "Филиалы",

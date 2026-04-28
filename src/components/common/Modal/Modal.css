@@ -22,25 +22,27 @@
   outline: none;
 }
 
-.modal--sm { max-width: 400px; }
+.modal--sm { max-width: 420px; }
 .modal--md { max-width: 560px; }
 .modal--lg { max-width: 780px; }
 
 .modal__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--space-3);
-  padding: var(--space-4) var(--space-5);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-7) var(--space-7) var(--space-5);
+  /* No bottom border — section panels inside the body do the structural work,
+     so the header stays clean (Linear/Notion convention). */
 }
 
 .modal__title {
   margin: 0;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
-  line-height: 1.3;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .modal__close {
@@ -56,6 +58,7 @@
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast);
   flex: 0 0 auto;
+  margin-top: -2px;
 }
 
 .modal__close:hover {
@@ -69,11 +72,11 @@
 }
 
 .modal__body {
-  padding: var(--space-5);
+  padding: var(--space-2) var(--space-7) var(--space-7);
   overflow-y: auto;
   color: var(--color-text-primary);
   font-size: var(--font-size-md);
-  line-height: 1.5;
+  line-height: var(--line-height-base);
   flex: 1 1 auto;
 }
 
@@ -81,7 +84,7 @@
   display: flex;
   justify-content: flex-end;
   gap: var(--space-2);
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-5) var(--space-7);
   border-top: 1px solid var(--color-border);
   background: var(--color-bg-app);
   border-bottom-left-radius: var(--radius-lg);

@@ -33,6 +33,21 @@ jest.mock('./infra/repositories/firestoreDashboardRepository', () => ({
   subscribeUserBranchIds: () => () => {},
 }));
 
+// Warehouse route: stub settings and asset repos so Firebase SDK is never loaded.
+jest.mock('./infra/repositories/firestoreSettingsRepository', () => ({
+  subscribeWarehouseSettings: () => () => {},
+  subscribeExchangeRates: () => () => {},
+}));
+jest.mock('./infra/repositories/firestoreAssetRepository', () => ({
+  createAssetRepository: () => ({
+    isSkuUnique: async () => ({ unique: true, conflictId: null, conflictName: null }),
+    isBarcodeUnique: async () => ({ unique: true, conflictId: null, conflictName: null }),
+    isSerialUnique: async () => ({ unique: true, conflictId: null, conflictName: null }),
+    create: async () => 'stub-id',
+    subscribeStorage: () => () => {},
+  }),
+}));
+
 import App from './App';
 
 test('unauthenticated session renders login page', async () => {

@@ -5,7 +5,7 @@
   padding: 0 var(--space-3);
   background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   color: var(--color-text-primary);
   transition:
     border-color var(--transition-fast),
@@ -22,6 +22,10 @@
 .input--md { height: var(--control-height-md); font-size: var(--font-size-md); }
 .input--lg { height: var(--control-height-lg); font-size: var(--font-size-lg); }
 
+.input:hover:not(.input--invalid):not(:focus-within) {
+  border-color: var(--color-border-strong);
+}
+
 .input:focus-within {
   border-color: var(--color-primary);
   box-shadow: var(--focus-ring);
@@ -33,7 +37,7 @@
 }
 
 .input--invalid:focus-within {
-  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.2);
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.18);
 }
 
 .input__el {
@@ -49,7 +53,7 @@
 }
 
 .input__el::placeholder {
-  color: var(--color-text-muted);
+  color: var(--color-text-subtle);
 }
 
 .input__el:disabled {
@@ -60,6 +64,24 @@
 .input__affix {
   display: inline-flex;
   align-items: center;
-  color: var(--color-text-muted);
+  color: var(--color-text-subtle);
   flex: 0 0 auto;
+}
+
+/* Leading-icon slot — when a prefix is present, give the icon room and
+   keep the typing cursor aligned with text-only inputs. */
+.input--has-affix .input__affix--left {
+  margin-right: var(--space-1);
+}
+
+/* Native date/time/month inputs render an OS picker icon on the right.
+   The kit's own leading-icon slot (calendar etc.) lives on the left via
+   the prefix slot — that's the Notion/Linear convention. */
+.input__el[type='date'],
+.input__el[type='time'],
+.input__el[type='datetime-local'],
+.input__el[type='month'],
+.input__el[type='week'] {
+  font: inherit;
+  color: inherit;
 }

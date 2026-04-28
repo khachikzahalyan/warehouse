@@ -33,6 +33,11 @@ export function DashboardPage() {
           icon="inventory"
         />
         <StatCard
+          label={t('dashboard.stats.storageAssets')}
+          value={stats.storageAssets}
+          icon="warehouse"
+        />
+        <StatCard
           label={t('dashboard.stats.pendingTransfers')}
           value={stats.pendingTransfers}
           icon="transfers"

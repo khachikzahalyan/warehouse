@@ -15,11 +15,13 @@ import {
   subscribeCount,
   subscribePendingTransfersCount,
   subscribeExpiredLicensesCount,
+  subscribeStorageCount,
 } from '../infra/repositories/firestoreDashboardRepository';
 
 /**
  * @typedef {Object} DashboardStats
  * @property {number | null} totalAssets
+ * @property {number | null} storageAssets
  * @property {number | null} pendingTransfers
  * @property {number | null} users
  * @property {number | null} branches
@@ -31,6 +33,7 @@ import {
 /** @returns {DashboardStats} */
 export function useDashboardStats() {
   const [totalAssets, setTotalAssets] = useState(/** @type {number|null} */ (null));
+  const [storageAssets, setStorage] = useState(/** @type {number|null} */ (null));
   const [pendingTransfers, setPending] = useState(/** @type {number|null} */ (null));
   const [users, setUsers] = useState(/** @type {number|null} */ (null));
   const [branches, setBranches] = useState(/** @type {number|null} */ (null));
@@ -53,6 +56,18 @@ export function useDashboardStats() {
     return () => {
       cancelled = true;
     };
+  }, []);
+
+  useEffect(() => {
+    return subscribeStorageCount(
+      (n) => setStorage(n),
+      (err) => {
+        // eslint-disable-next-line no-console
+        console.warn('[dashboard] storage assets error:', err);
+        setError((prev) => prev ?? err);
+        setStorage(0);
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -108,6 +123,7 @@ export function useDashboardStats() {
   useEffect(() => {
     if (
       totalAssets !== null &&
+      storageAssets !== null &&
       pendingTransfers !== null &&
       users !== null &&
       branches !== null &&
@@ -115,7 +131,7 @@ export function useDashboardStats() {
     ) {
       setLoading(false);
     }
-  }, [totalAssets, pendingTransfers, users, branches, expiredLicenses]);
+  }, [totalAssets, storageAssets, pendingTransfers, users, branches, expiredLicenses]);
 
-  return { totalAssets, pendingTransfers, users, branches, expiredLicenses, loading, error };
+  return { totalAssets, storageAssets, pendingTransfers, users, branches, expiredLicenses, loading, error };
 }

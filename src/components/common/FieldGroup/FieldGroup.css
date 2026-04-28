@@ -1,0 +1,46 @@
+/* FieldGroup — soft tinted panel for grouping related form fields inside
+   modals and drawers. Slate-50 fill, 12px radius, 24px internal padding.
+   Notion/Linear "section card" pattern. */
+
+.field-group {
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.field-group + .field-group {
+  margin-top: var(--space-4);
+}
+
+.field-group__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.field-group__title {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field-group__description {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-base);
+}
+
+.field-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}

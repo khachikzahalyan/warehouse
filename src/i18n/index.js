@@ -25,13 +25,16 @@ import {
 import hyCommon from '../locales/hy/common.json';
 import enCommon from '../locales/en/common.json';
 import ruCommon from '../locales/ru/common.json';
+import enWarehouse from '../locales/en/warehouse.json';
+import ruWarehouse from '../locales/ru/warehouse.json';
+import hyWarehouse from '../locales/hy/warehouse.json';
 
 export const I18N_STORAGE_KEY = 'warehouse.lang';
 
 const resources = {
-  hy: { common: hyCommon },
-  en: { common: enCommon },
-  ru: { common: ruCommon },
+  hy: { common: hyCommon, warehouse: hyWarehouse },
+  en: { common: enCommon, warehouse: enWarehouse },
+  ru: { common: ruCommon, warehouse: ruWarehouse },
 };
 
 i18n
@@ -43,7 +46,7 @@ i18n
     fallbackLng: [...FALLBACK_LOCALE_CHAIN],
     lng: undefined, // let the detector decide; falls back to fallbackLng
     defaultNS: 'common',
-    ns: ['common'],
+    ns: ['common', 'warehouse'],
 
     detection: {
       order: ['localStorage', 'navigator'],
